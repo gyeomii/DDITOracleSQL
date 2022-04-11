@@ -1,0 +1,13 @@
+2022-0406-01)사용자 생성
+- 오라클 사용자 생성
+ (사용형식)
+ CREATE USER 유저명 IDENTIFIED BY 암호;
+ CREATE USER ksg97 IDENTIFIED BY java;
+- 권한설정
+ GRANT 권한 명[,권한 명,...] TO 유저명; -- CONNECT, RESOURCE, DBA --
+ GRANT CONNECT, RESOURCE, DBA TO KSG97;
+ 
+ - HR계정 활성화
+ ALTER USER HR ACCOUNT UNLOCK;
+ ALTER USER HR IDENTIFIED BY java;
+기본키 -> NOT NULL NO DUPLICATE --필수 암기
