@@ -93,7 +93,7 @@
           SELECT A.CART_PROD AS 제품코드, B.PROD_NAME AS 제품명, SUM(A.CART_QTY) AS 판매수량합계, SUM(A.CART_QTY*B.PROD_PRICE) AS 판매금액합계
            FROM CART A, PROD B
           WHERE A.CART_PROD = B.PROD_ID AND --1  SUBSTR(A.CART_NO,1,8)>= '20200601' AND SUBSTR(A.CART_NO,1,8)>= '20200630'
-                                            --2  SUBSTR(A.CART_NO,1,6)>= '202006'
+                                            --2  SUBSTR(A.CART_NO,1,6)= '202006'
                                             /*3*/A.CART_NO LIKE '202006%'
           GROUP BY A.CART_PROD, B.PROD_NAME -- SUM을 사용하면 GROUP BY 필수
           ORDER BY 4 DESC;
