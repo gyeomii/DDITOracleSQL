@@ -27,6 +27,19 @@
      FROM MEMBER
      WHERE MEM_ADD1 LIKE '대전%'
      AND SUBSTR(MEM_REGNO2,1,1) IN ('2','4'); --SUBSTR(컬럼명,글자위치,글자수) : 부분문자열추출
+     
+  (사용예) 회원테이블에서 회원들의 거주지역(광역시도)을 조회하시오.
+   SELECT DISTINCT SUBSTR(MEM_ADD1,1,2)거주지
+    FROM MEMBER;
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   
   
