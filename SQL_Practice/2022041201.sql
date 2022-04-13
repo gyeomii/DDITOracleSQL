@@ -34,7 +34,7 @@
            SELECT PROD_ID AS 상품코드, PROD_NAME AS 상품명, PROD_COST AS 매입가격, PROD_PRICE AS 판매가격
              FROM PROD
             WHERE PROD_PRICE >= 200000
-         ORDER BY 1;
+         ORDER BY 1; --1번컬럼
          
    (사용예)회원테이블(MEMBER)에서 마일리지가 5000이상인 회원정보를 조회하시오.
           Alias는 회원번호, 회원명, 마일리지, 구분이며 '구분'란에 '여성회원'또는 '남성회원'을 출력할 것.
@@ -73,8 +73,7 @@
            
     **사원테이블에 EMP_NAME VARCHAR2(80)컬럼을 추가하고 FIRST_NAME과 LAST_NAME을 결합하여 EMP_NAME에 저장하시오
     1) 컬럼을 추가
-      ALTER TABLE HR.employees
-        ADD EMP_NAME VARCHAR2(80);
+      ALTER TABLE HR.employees ADD EMP_NAME VARCHAR2(80);
       UPDATE HR.employees
          SET EMP_NAME = FIRST_NAME||' '||LAST_NAME;
       COMMIT;
@@ -92,8 +91,8 @@
           출력은 제품코드, 제품명, 판매수량합계, 판매금액합계 이며 판매금액이 많은 순으로 출력하시오.
           SELECT A.CART_PROD AS 제품코드, B.PROD_NAME AS 제품명, SUM(A.CART_QTY) AS 판매수량합계, SUM(A.CART_QTY*B.PROD_PRICE) AS 판매금액합계
            FROM CART A, PROD B
-          WHERE A.CART_PROD = B.PROD_ID AND --1  SUBSTR(A.CART_NO,1,8)>= '20200601' AND SUBSTR(A.CART_NO,1,8)>= '20200630'
-                                            --2  SUBSTR(A.CART_NO,1,6)= '202006'
-                                            /*3*/A.CART_NO LIKE '202006%'
+          WHERE A.CART_PROD = B.PROD_ID AND/*3*/A.CART_NO LIKE '202006%'
+                                            --1 SUBSTR(A.CART_NO,1,8)>= '20200601' AND SUBSTR(A.CART_NO,1,8)>= '20200630'
+                                            --2 SUBSTR(A.CART_NO,1,6)= '202006'
           GROUP BY A.CART_PROD, B.PROD_NAME -- SUM을 사용하면 GROUP BY 필수
           ORDER BY 4 DESC;
