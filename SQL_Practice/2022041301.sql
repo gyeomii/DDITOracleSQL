@@ -56,7 +56,7 @@
     ex) SNAME LIKE '김_' => SNAME의 값이 2글자이며 '김'으로 시작하는 문자열과 대응됨
         SNAME LIKE '_김_' => SNAME의 값 중에 3글자이며 중간의 글자가 '김'인 문자열과 대응됨
         SNAME LIKE '_김' => SNAME의 값이 2글자이며 '김'으로 끝나는 문자열과 대응됨
-    --CART_MEMBER 구매자, CART_NO 구매번호, CART_PROD, 구매상품 CART_QTY 구매수량
+    --CART_MEMBER 구매자, CART_NO 구매번호, CART_PROD 구매상품, CART_QTY 구매수량
   (사용예)장바구니 테이블(CART)에서 2020년 6월에 판매된 자료를 조회하시오.
          Alias는 판매일자, 상품코드, 판매수량이며 판매일 순으로 출력하시오.
     SELECT SUBSTR(CART_NO,1,8) AS 판매일자, CART_PROD AS 상품코드, CART_QTY AS 판매수량
