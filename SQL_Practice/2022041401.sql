@@ -130,3 +130,17 @@
         FROM MEMBER
       WHERE MEM_ADD1 LIKE '대전%'; --선생님이 하신거
   
+  8)INSTR(C1,C2[,m[,n]])
+   - 주어진 c1문자열에서 c2문자열이 처음 나온 위치를 반환
+   - m은 시작위치를 나타내며
+   - n은 반복 나타낸 횟수
+   - m이 음수면 오른쪽부터 검사, 출력된 인덱스 값은 왼쪽부터 센 값으로 나옴
+  (사용예)
+    SELECT INSTR('APPLEBANANAPERSIMMON', 'L') AS COL1,
+           INSTR('APPLEBANANAPERSIMMON', 'A',3) AS COL1,
+           INSTR('APPLEBANANAPERSIMMON', 'A',3,2) AS COL1,
+           INSTR('APPLEBANANAPERSIMMON', 'A',-3) AS COL1
+      FROM DUAL;
+  9)LENGTHB(c1), LENGTH(c1)
+   - 주어진 문자열의 길이를 BYTE수로(LENGTHB), 글자수로(LENGTH)로 반환
+  
