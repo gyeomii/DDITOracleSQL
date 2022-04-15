@@ -9,7 +9,7 @@
         컬럼명 [AS 별칭]
      FROM 테이블명 --FROM 다음엔 테이블과 뷰 가 올 수 있다.
    [WHERE 조건] --행(ROW)을 제어, 전체조회시 생략
-     [GROUP BY 컬럼명[,컬럼명,...]]
+     [GROUP BY 컬럼명[,컬럼명,...]] -- 집계함술ㄹ 제외한 모든 컬럼을 적어야한다.
    [HAVING 조건] --ORDER BY: 순서화 [ASCENDING(오름차순), DESCENDING(내림차순)] DEFAULT는 ASC
      [ORDER BY 컬럼인덱스|컬럼명 [ASC|DESC][,컬럼인덱스|컬럼명 [ASC|DESC],...]]];
   
