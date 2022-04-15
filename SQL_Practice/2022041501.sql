@@ -65,3 +65,36 @@
   (사용예)
     SELECT FLOOR(102.6777), FLOOR(102), FLOOR(-102.6777), CEIL(102.6777), CEIL(102), CEIL(-102.6777)
       FROM DUAL;
+      
+  5)REMAINDER(n,m), MOD(n,m)
+   - 주어진 수 n을 m으로 나눈 나머지를 반환
+   - 내부적으로 구현 방법이 다름
+   - MOD(n,m): 일반적인 나머지를 반환
+   - REMAINDER(n,m) : 나머지가 m의 절반값(0.5)를 초과하면 반환 값은 다음 몫이 되기위해 필요한 값의 음수이며, 그 외는 MOD와 동일
+   - 구현방법
+        MOD    = n - m * FLOOR(n/m)
+     REMAINDER = n - m * ROUND(n/m)
+     EX) MOD(12,5), REMAINDER(12,5)
+             MOD(12,5)   = 12 - 5 * FLOOR(12/5)
+                         = 12 - 5 * FLOOR(2.4)
+                         = 12 - 5 * 2
+                         = 12 - 10
+                         = 2
+         REMAINDER(12,5) = 12 - 5 * ROUND(12/5)
+                         = 12 - 5 * ROUND(2.4)
+                         = 12 - 5 * 2
+                         = 12 - 10
+                         = 2
+         MOD(14,5), REMAINDER(14,5)
+             MOD(14,5)   = 14 - 5 * FLOOR(14/5)
+                         = 14 - 5 * FLOOR(2.8)
+                         = 14 - 5 * 2
+                         = 14 - 10
+                         = 4
+         REMAINDER(14,5) = 14 - 5 * ROUND(14/5)
+                         = 14 - 5 * ROUND(2.8)
+                         = 14 - 5 * 3
+                         = 14 - 15
+                         = -1
+                         
+                         
