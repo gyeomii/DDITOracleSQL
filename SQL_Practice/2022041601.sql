@@ -15,5 +15,17 @@ DML: 데이터 조작어(Data manipulation Language)
 DCL: 데이터 제의어(Data Control Language)
  - 데이터베이스 관리자가 데이터 보안, 무결성 유지, 병행 제어, 회복을 위해 
    DBA가 사용하는 제어용 언어
- - GRANT, REVOKE 문이 있음
+ - GRANT, REVOKE, [COMMIT, ROLLBACK, SAVEPOINT 는 TCL이라고도 불림]문이 있음
+ - GRANT: 권한부여명령어 (GRANT[~ON]~TO)
+ - REVOKE: 권한취소명령어 (REVOKE[~ON]~FROM
  
+WINDOW FUNCTION:윈도우 함수
+ - 집계함수: COUNT, SUM, AVG, MAX, MIN, STDDEV, VARIAN
+ - 순위함수: RANK, DENSE_RANK, ROW_NUMBER
+ - 행 함수: FIRST_VALUE, LAST_VALUE, LAG, LEAD
+ - 그룹내 비율함수: RATIO_TO_REPORT, PERCENT_RANK
+
+GROUP FUNCTION: 그룹함수
+ - ROLL UP
+ - CUBE
+ - GROUPING SETS
