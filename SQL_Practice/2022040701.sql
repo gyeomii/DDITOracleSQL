@@ -1,6 +1,6 @@
 2022-0407-01)
-1.DML명령
- 1) 테이블 생성명령(CREATE TABLE)
+1.DML명령(Data Manipulation Language)
+ 1) 테이블 생성명령(CREATE TABLE) - > DDL(Data Definition Language)
   - 오라클에서 사용 될 테이블을 생성
   (사용형식)
   CREATE TABLE 테이블명 (
