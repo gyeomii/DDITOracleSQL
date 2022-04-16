@@ -1,22 +1,5 @@
 2022-0408-01)
 
-3.UPDATE 명령
- - 이미 테이블에 존대하는 자료를 수정할 때 사용
- (사용형식)
- UPDATE 테이블명
-    SET 컬럼명 = 값[,]
-          :
-        컬렴명 = 값[,]
-    [WHERE 조건]; --WHERE가 없으면 대상컬럼의 모든 행의 값을 바꾼다.
-사용예)사원테이블(HR계정 EMPLOYEES테이블)에서 모든 사원의 급여를 15%인상하여 변경하시오
-    UPDATE HR.EMPLOYEES
-        SET SALARY = SALARY + ROUND(SALARY * 0.15);
-    
-    SELECT FIRST_NAME, SALARY
-        FROM HR.EMPLOYEES;
-    
-    ROLLBACK;
-    
 4.DELETE 명령
  - 불필요한 자료를 테이블에서 삭제
  --부모테이블은 삭제할 수 없음, 자식테이블을 삭제한 후 실행해야함
