@@ -14,5 +14,34 @@
        단, 등급은 마일리지가 6000초과한 회원부터 1등급에서 마지막등급으로 분류하시오
     SELECT MEM_ID AS 회원번호, MEM_NAME AS 회원명, MEM_MILEAGE AS 마일리지,
            8 - WIDTH_BUCKET(MEM_MILEAGE, 1000, 6000, 6) AS 등급1,
-           WIDTH_BUCKET(MEM_MILEAGE, 6000,1000, 6) + 1 AS 등급2
+           WIDTH_BUCKET(MEM_MILEAGE, 6000,999, 6) + 1 AS 등급2
       FROM MEMBER;
+
+3. 날짜형 함수
+ 1) SYSDATE
+  . 시스템에서 제공하는 날짜와 시간정보 반환
+  . -와 +의 연산이 가능함
+ (사용예)SELECT SYSDATE+3650 FROM DUAL;
+ 
+ 2) ADD_MONTHS(d, n)
+  . 주어진 날짜 d에 n 개월을 더한 날짜 반환
+ (사용예)SELECT ADD_MONTHS(SYSDATE, 120) FROM DUAL;
+ 
+ 3) NEST_DAY(d, c)
+  . 주어진 날짜 다음에 처음 만나는 c요일의 날짜를 반환
+  . c는 '월요일', '월' ~ '일요일', '일' 중 하나의 요일 선택
+ (사용예) SELECT NEXT_DAY(SYSDATE,'월요일'),
+                NEXT_DAY(SYSDATE,'일요일'),
+                NEXT_DAY(SYSDATE,'토요일')
+           FROM DUAL;
+
+ 4) LAST_DAY(d)
+  . 주어진 날짜자료 d에 포함된 월의 마지막 날짜를 반환
+  . 주로 2월의 마지막일자(윤년/평년)를 출력할 때 사용됨
+ (사용예)사원테이블에서 2월에 입사한 사원정보를 조회하시오.
+        Alias는 사원번호, 사원명, 부서명, 직책, 입사일이다.
+    SELECT A.EMPLOEE_ID AS 사원번호, A.EMP_NAME AS 사원명, B.DEPARTMENT_NAME AS 부서명, C.JOB_FILE AS 직무, A. HIRE_DATE AS 입사일
+      FROM HR.employees A, HR.departments B, HR.jobs C
+     WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
+       AND A.JOB_ID = C.JOB_ID
+       AND EXTRACT(MONTH FROM A.HIRE_DATE) = 2;
