@@ -45,3 +45,30 @@
      WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
        AND A.JOB_ID = C.JOB_ID
        AND EXTRACT(MONTH FROM A.HIRE_DATE) = 2;
+ (사용예)매입테이블(BUYPROD)에서 2020년 2월 매입집계를 구하시오.
+        Alias는 날짜, 매수량합계, 매입금액합계이며 날짜순으로 출력하시오.
+    SELECT BUY_DATE AS 날짜, SUM(BUY_QTY) AS 매수량합계, SUM(BUY_QTY * BUY_COST) AS 매입금액합계
+      FROM BUYPROD
+     WHERE BUY_DATE BRTWEEN TO_DATE('20200201') AND LAST_DAY(TO_DATE('202002'))
+     GROUP BY BUY_DATE
+     ORDER BY 1;
+     
+ 5) EXTRACT(fmt FROM d)
+  . 주어진 날짜자료 d에서 fmt(Format String:형식문자열)로 제시된 값을 반환
+  . fmt는 YEAR, MONTH, DAY, HOUR, MINUTE, SECOND 중 하나
+  . 결과는 숫자자료이다.
+
+ (사용예)회원테이블에서 이번달에 생일이 있는 회원을 조회하시오
+        Alias는 회원번호, 회원명, 생년월일, 마일리지 이다.
+    SELECT MEM_ID AS 회원번호, MEM_NAME AS 회원명, MEM_BIR AS 생년월일, MEM_MILEAGE AS 마일리지
+      FROM MEMBER
+      WHERE EXTRACT(MONTH FROM SYSDATE)=EXTRACT(MONTH FROM MEM_BIR);
+ 
+ (사용예)오늘이 2020년 4월 18일 이라고 가정할 때
+        사원테이블에서 근속년수가 15년 이상인 사원을 조회하시오
+        Alias는 사원번호, 사원명, 입사일, 근속년수, 급여이다.
+        SELECT EMPLOYEE_ID AS 사원번호, EMP_NAME AS 사원명, HIRE_DATE AS 입사일,
+               EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(TEAR FROM HIRE_DATE) AS 근속년수, SALARY AS 급여
+          FROM HR.employees
+         WHERE EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(TEAR FROM HIRE_DATE) >= 15
+         ORDER BY 4 DESC;
