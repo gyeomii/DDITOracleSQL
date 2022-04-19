@@ -56,6 +56,25 @@ HH, HH12, HH24       시간         SELECT TO_CHAR(SYSDATE, 'HH HH12 HH24') FROM
            TO_CHAR(12345, 'L99,999'), --현재 WINDOW의 LOCATER의 화폐기호를 표시
            TO_CHAR(12345, '$99999')
       FROM DUAL;
+ 
+ 3) TO_NUMBER(c,[,fmt])
+  - 주어진 문자열 자료 c를 fmt 형식의 숫자로 변환
+  - 형식지정문자열이 없으면 스스로 숫자로 변환가능해야함, ","(Comma)가 있으면 변환불가
+  - 형식지정문자열이 있으면 가공된 형태의 원본형태를 출력
+  (사용예)
+    SELECT TO_NUMBER('12345'),
+           TO_NUMBER('12,345','99,999'),
+           TO_NUMBER('<1234>','9999PR'),
+           TO_NUMBER('$12,345.00','$99,999.99')
+      FROM DUAL;
+      
+ 4) TO_DATE(c[,fmt])
+  - 주어진 문자열 자료 c를 fmt 형식의 날짜자료로 변환
+  (사용예)
+    SELECT TO_DATE('20220405'),
+           TO_DATE('2022.04.05'),
+           TO_DATE('220405', 'YYMMDD')
+      FROM DUAL;
     
     
     
