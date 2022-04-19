@@ -1,40 +1,40 @@
 2022-0408-01)
 
-4.DELETE ¸í·É
- - ºÒÇÊ¿äÇÑ ÀÚ·á¸¦ Å×ÀÌºí¿¡¼­ »èÁ¦
- --ºÎ¸ðÅ×ÀÌºíÀº »èÁ¦ÇÒ ¼ö ¾øÀ½, ÀÚ½ÄÅ×ÀÌºíÀ» »èÁ¦ÇÑ ÈÄ ½ÇÇàÇØ¾ßÇÔ
- (»ç¿ëÇü½Ä)
- DELETE FROM Å×ÀÌºí¸í
- [WHERE Á¶°Ç]
+4.DELETE ëª…ë ¹
+ - ë¶ˆí•„ìš”í•œ ìžë£Œë¥¼ í…Œì´ë¸”ì—ì„œ ì‚­ì œ
+ --ë¶€ëª¨í…Œì´ë¸”ì€ ì‚­ì œí•  ìˆ˜ ì—†ìŒ, ìžì‹í…Œì´ë¸”ì„ ì‚­ì œí•œ í›„ ì‹¤í–‰í•´ì•¼í•¨
+ (ì‚¬ìš©í˜•ì‹)
+ DELETE FROM í…Œì´ë¸”ëª…
+ [WHERE ì¡°ê±´]
  
- »ç¿ë¿¹)
+ ì‚¬ìš©ì˜ˆ)
  DELETE FROM CART;
  
-5. ¿À¶óÅ¬ µ¥ÀÌÅÍÅ¸ÀÔ
- - ¿À¶óÅ¬¿¡ ¹®ÀÚ µ¥ÀÌÅÍ Å¸ÀÔÀº Á¸ÀçÇÏÁö¾ÊÀ½
- - ¹®ÀÚ¿­, ¼ýÀÚ, ³¯Â¥, 2Áø µ¥ÀÌÅÍÅ¸ÀÔ Á¦°ø
-  1) ¹®ÀÚ¿­ ÀÚ·áÇü
-  - ¿À¶óÅ¬ÀÇ ¹®ÀÚ¿­ ÀÚ·á´Â ' '¿¡ ±â¼ú
-  - ¹®ÀÚ¿­ ÀÚ·áÇüÀº CHAR, VARCHAR, VARCHAR2, NVARCHAR, NVARCHAR2,
-    LONG, CLOB, NCLOBµîÀÌ Á¦°ø -- LONGÀÇ °³¼±ÆÇ -> CLOB
+5. ì˜¤ë¼í´ ë°ì´í„°íƒ€ìž…
+ - ì˜¤ë¼í´ì— ë¬¸ìž ë°ì´í„° íƒ€ìž…ì€ ì¡´ìž¬í•˜ì§€ì•ŠìŒ
+ - ë¬¸ìžì—´, ìˆ«ìž, ë‚ ì§œ, 2ì§„ ë°ì´í„°íƒ€ìž… ì œê³µ
+  1) ë¬¸ìžì—´ ìžë£Œí˜•
+  - ì˜¤ë¼í´ì˜ ë¬¸ìžì—´ ìžë£ŒëŠ” ' 'ì— ê¸°ìˆ 
+  - ë¬¸ìžì—´ ìžë£Œí˜•ì€ CHAR, VARCHAR, VARCHAR2, NVARCHAR, NVARCHAR2,
+    LONG, CLOB, NCLOBë“±ì´ ì œê³µ -- LONGì˜ ê°œì„ íŒ -> CLOB
    (1) CHAR
-    . °íÁ¤±æÀÌ ¹®ÀÚ¿­ ÀÚ·á ÀúÀå
-    . ÃÖ´ë 2000byte ±îÁö ÀúÀå°¡´É
-    . ±â¾ï°ø°£ÀÌ ³²À¸¸é ¿À¸¥ÂÊ °ø°£¿¡ °ø¹éÀÌ padding, ±â¾ï°ø°£ÀÌ ÀÛÀ¸¸é error
-    . ±âº»Å°³ª °íÁ¤µÈ ÀÚ·á(ÁÖ¹Î¹øÈ£ µî) ÀúÀå¿¡ ÁÖ·Î »ç¿ë
-    (»ç¿ëÇü½Ä)
-      ÄÃ·³¸í CHAR(Å©±â[byte|char])
-      . 'Å©±â[byte|char]': 'Å©±â'·Î ÁöÁ¤µÈ °ªÀÌ byte ÀÎÁö, char(±ÛÀÚ¼ö)ÀÎÁö °áÁ¤.
-        »ý·«ÇÏ¸é byte ·Î °£ÁÖ.
-      . ÇÑ±Û ÇÑ ±ÛÀÚ´Â 3byte ¿¡ ÀúÀåµÇ¸ç CHAR(2000CHAR)·Î ¼±¾ðµÇ¾ú´Ù ÇÒÁö¶óµµ
-        ÀüÃ¼°ø°£Àº 2000byte ¸¦ ÃÊ°úÇÒ ¼ö ¾øÀ½
-    (»ç¿ë¿¹)
+    . ê³ ì •ê¸¸ì´ ë¬¸ìžì—´ ìžë£Œ ì €ìž¥
+    . ìµœëŒ€ 2000byte ê¹Œì§€ ì €ìž¥ê°€ëŠ¥
+    . ê¸°ì–µê³µê°„ì´ ë‚¨ìœ¼ë©´ ì˜¤ë¥¸ìª½ ê³µê°„ì— ê³µë°±ì´ padding, ê¸°ì–µê³µê°„ì´ ìž‘ìœ¼ë©´ error
+    . ê¸°ë³¸í‚¤ë‚˜ ê³ ì •ëœ ìžë£Œ(ì£¼ë¯¼ë²ˆí˜¸ ë“±) ì €ìž¥ì— ì£¼ë¡œ ì‚¬ìš©
+    (ì‚¬ìš©í˜•ì‹)
+      ì»¬ëŸ¼ëª… CHAR(í¬ê¸°[byte|char])
+      . 'í¬ê¸°[byte|char]': 'í¬ê¸°'ë¡œ ì§€ì •ëœ ê°’ì´ byte ì¸ì§€, char(ê¸€ìžìˆ˜)ì¸ì§€ ê²°ì •.
+        ìƒëžµí•˜ë©´ byte ë¡œ ê°„ì£¼.
+      . í•œê¸€ í•œ ê¸€ìžëŠ” 3byte ì— ì €ìž¥ë˜ë©° CHAR(2000CHAR)ë¡œ ì„ ì–¸ë˜ì—ˆë‹¤ í• ì§€ë¼ë„
+        ì „ì²´ê³µê°„ì€ 2000byte ë¥¼ ì´ˆê³¼í•  ìˆ˜ ì—†ìŒ
+    (ì‚¬ìš©ì˜ˆ)
         CREATE TABLE TEMP01(
           COL1 CHAR(20),
           COL2 CHAR(20 BYTE),
           COL3 CHAR(20 CHAR));
-        INSERT INTO TEMP01 VALUES('´ëÀü½Ã Áß±¸', '´ëÀü½Ã Áß±¸', '´ëÀü½Ã Áß±¸');
-        INSERT INTO TEMP01 VALUES('´ëÀü½Ã Áß±¸ °è·æ·Î 846', '´ëÀü½Ã Áß±¸', '´ëÀü½Ã Áß±¸');
+        INSERT INTO TEMP01 VALUES('ëŒ€ì „ì‹œ ì¤‘êµ¬', 'ëŒ€ì „ì‹œ ì¤‘êµ¬', 'ëŒ€ì „ì‹œ ì¤‘êµ¬');
+        INSERT INTO TEMP01 VALUES('ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846', 'ëŒ€ì „ì‹œ ì¤‘êµ¬', 'ëŒ€ì „ì‹œ ì¤‘êµ¬');
        
         SELECT * FROM TEMP01;
         SELECT LENGTHB(COL1),
@@ -42,13 +42,13 @@
               LENGTHB(COL3)
          FROM TEMP01;
    (2)VARCHAR2
-    . °¡º¯±æÀÌ ¹®ÀÚ¿­ ÀÚ·á¸¦ ÀúÀå (µ¥ÀÌÅÍÀÇ ±æÀÌ¸¸Å­ »ç¿ëÇÏ°í ³²Àº°ø°£ ¹ÝÈ¯)
-    . ÃÖ´ë 4000byte ±îÁö ÀúÀå°¡´É
-    . VARCHAR ¿Í µ¿ÀÏ±â´É
-    . NVARCHAR ¹× NVARCHAR2´Â ±¹Á¦ Ç¥ÁØÄÚµåÀÎ UTF-8, UTF-16¹æ½ÄÀ¸·Î µ¥ÀÌÅÍ¸¦ ÀÎÄÚµùÇÏ¿© ÀúÀå
-    (»ç¿ëÇü½Ä)
-      ÄÃ·³¸í VARCHAR2(Å©±â[BYTE|CHAR])
-    (»ç¿ë¿¹)
+    . ê°€ë³€ê¸¸ì´ ë¬¸ìžì—´ ìžë£Œë¥¼ ì €ìž¥ (ë°ì´í„°ì˜ ê¸¸ì´ë§Œí¼ ì‚¬ìš©í•˜ê³  ë‚¨ì€ê³µê°„ ë°˜í™˜)
+    . ìµœëŒ€ 4000byte ê¹Œì§€ ì €ìž¥ê°€ëŠ¥
+    . VARCHAR ì™€ ë™ì¼ê¸°ëŠ¥
+    . NVARCHAR ë° NVARCHAR2ëŠ” êµ­ì œ í‘œì¤€ì½”ë“œì¸ UTF-8, UTF-16ë°©ì‹ìœ¼ë¡œ ë°ì´í„°ë¥¼ ì¸ì½”ë”©í•˜ì—¬ ì €ìž¥
+    (ì‚¬ìš©í˜•ì‹)
+      ì»¬ëŸ¼ëª… VARCHAR2(í¬ê¸°[BYTE|CHAR])
+    (ì‚¬ìš©ì˜ˆ)
       CREATE TABLE TEMP02(
         COL1 VARCHAR2(100),
         COL2 VARCHAR2(100 BYTE),
@@ -60,15 +60,15 @@
     
       SELECT * FROM TEMP02;
    (3)LONG
-    . °¡º¯±æÀÌ µ¥ÀÌÅÍ ÀúÀå
-    . ÃÖ´ë 2GB ±îÁö ÀúÀå °¡´É
-    . ÇÑ Å×ÀÌºí¿¡ ÇÏ³ªÀÇ LONGÅ¸ÀÔ ÄÃ·³¸¸ »ç¿ë --±â´É°³¼±ÀÌ Áß´ÜµÈ ÀÌÀ¯
-    . CLOB(Character Large OBjects)·Î ±â´É ¾÷±×·¹ÀÌµå µÊ
-    . SELECT¹®ÀÇ SELECTÀý, UPDATE¹®ÀÇ SETÀý, INSERT¹®ÀÇ VALUESÀý¿¡¼­ »ç¿ë °¡´É
-    . ÀÏºÎ ÇÔ¼ö¿¡¼­´Â »ç¿ëµÉ ¼ö ¾øÀ½
-    (»ç¿ëÇü½Ä)
-      ÄÃ·³¸í LONG
-    (»ç¿ë¿¹)
+    . ê°€ë³€ê¸¸ì´ ë°ì´í„° ì €ìž¥
+    . ìµœëŒ€ 2GB ê¹Œì§€ ì €ìž¥ ê°€ëŠ¥
+    . í•œ í…Œì´ë¸”ì— í•˜ë‚˜ì˜ LONGíƒ€ìž… ì»¬ëŸ¼ë§Œ ì‚¬ìš© --ê¸°ëŠ¥ê°œì„ ì´ ì¤‘ë‹¨ëœ ì´ìœ 
+    . CLOB(Character Large OBjects)ë¡œ ê¸°ëŠ¥ ì—…ê·¸ë ˆì´ë“œ ë¨
+    . SELECTë¬¸ì˜ SELECTì ˆ, UPDATEë¬¸ì˜ SETì ˆ, INSERTë¬¸ì˜ VALUESì ˆì—ì„œ ì‚¬ìš© ê°€ëŠ¥
+    . ì¼ë¶€ í•¨ìˆ˜ì—ì„œëŠ” ì‚¬ìš©ë  ìˆ˜ ì—†ìŒ
+    (ì‚¬ìš©í˜•ì‹)
+      ì»¬ëŸ¼ëª… LONG
+    (ì‚¬ìš©ì˜ˆ)
       CREATE TABLE TEMP03(
         COL1 LONG,
         COL2 VARCHAR2(4000));
@@ -77,16 +77,16 @@
       
       SELECT * FROM TEMP03
       
-      SELECT SUBSTR(COL2,7,5)--COL1Àº LONGÀ¸·Î ¸¸µé¾îÁ®¼­ SUBSTRÀ» »ç¿ëÇÒ ¼ö ¾øÀ½
+      SELECT SUBSTR(COL2,7,5)--COL1ì€ LONGìœ¼ë¡œ ë§Œë“¤ì–´ì ¸ì„œ SUBSTRì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŒ
         FROM TEMP03;
    (4)CLOB
-    . °¡º¯±æÀÌ µ¥ÀÌÅÍ ÀúÀå
-    . ÃÖ´ë 4GB±îÁö Ã³¸®°¡´É
-    . ÇÑ Å×ÀÌºí¿¡ ¿©·¯ °³ÀÇ CLOBÀÚ·áÅ¸ÀÔÀÇ ÄÃ·³ »ç¿ë°¡´É
-    . ÀÏºÎ ±â´ÉÀº DBMS_LOB APIÀÇ Áö¿øÀ» ¹Þ¾Æ¾ß »ç¿ë°¡´É
-    (»ç¿ëÇü½Ä)
-      ÄÃ·³¸í CLOB;
-    (»ç¿ë¿¹)
+    . ê°€ë³€ê¸¸ì´ ë°ì´í„° ì €ìž¥
+    . ìµœëŒ€ 4GBê¹Œì§€ ì²˜ë¦¬ê°€ëŠ¥
+    . í•œ í…Œì´ë¸”ì— ì—¬ëŸ¬ ê°œì˜ CLOBìžë£Œíƒ€ìž…ì˜ ì»¬ëŸ¼ ì‚¬ìš©ê°€ëŠ¥
+    . ì¼ë¶€ ê¸°ëŠ¥ì€ DBMS_LOB APIì˜ ì§€ì›ì„ ë°›ì•„ì•¼ ì‚¬ìš©ê°€ëŠ¥
+    (ì‚¬ìš©í˜•ì‹)
+      ì»¬ëŸ¼ëª… CLOB;
+    (ì‚¬ìš©ì˜ˆ)
       CREATE TABLE TEMP04(
       COL1 LONG,
       COL2 CLOB,
@@ -94,7 +94,7 @@
       COL4 VARCHAR2(4000));
       
       INSERT INTO TEMP04
-        VALUES('', '´ëÀü½Ã Áß±¸ °è·æ·Î 846', '´ëÀü½Ã Áß±¸ °è·æ·Î 846', '´ëÀü½Ã Áß±¸ °è·æ·Î 846');
+        VALUES('', 'ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846', 'ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846', 'ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846');
       SELECT * FROM TEMP04;
       
       SELECT DBMS_LOB.GETLENGTH(COL2),
@@ -102,8 +102,8 @@
              LENGTHB(COL4)
         FROM TEMP04;
         
-      SELECT SUBSTR(COL2,5,2), --SUBSTR(ÄÃ·³¸í, ±ÛÀÚÀ§Ä¡, ±ÛÀÚ¼ö)
-             DBMS_LOB.SUBSTR(COL2,2,5), --DBMS_LOB.SUBSTR(ÄÃ·³¸í, ±ÛÀÚ¼ö, ±ÛÀÚÀ§Ä¡)
+      SELECT SUBSTR(COL2,5,2), --SUBSTR(ì»¬ëŸ¼ëª…, ê¸€ìžìœ„ì¹˜, ê¸€ìžìˆ˜)
+             DBMS_LOB.SUBSTR(COL2,2,5), --DBMS_LOB.SUBSTR(ì»¬ëŸ¼ëª…, ê¸€ìžìˆ˜, ê¸€ìžìœ„ì¹˜)
              SUBSTR(COL4,5,2)
         FROM TEMP04;
   
