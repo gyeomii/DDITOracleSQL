@@ -1,13 +1,13 @@
-2022-0406-01)»ç¿ëÀÚ »ý¼º
-- ¿À¶óÅ¬ »ç¿ëÀÚ »ý¼º
- (»ç¿ëÇü½Ä)
- CREATE USER À¯Àú¸í IDENTIFIED BY ¾ÏÈ£;
+2022-0406-01)ì‚¬ìš©ìž ìƒì„±
+- ì˜¤ë¼í´ ì‚¬ìš©ìž ìƒì„±
+ (ì‚¬ìš©í˜•ì‹)
+ CREATE USER ìœ ì €ëª… IDENTIFIED BY ì•”í˜¸;
  CREATE USER ksg97 IDENTIFIED BY java;
-- ±ÇÇÑ¼³Á¤
- GRANT ±ÇÇÑ ¸í[,±ÇÇÑ ¸í,...] TO À¯Àú¸í; -- CONNECT, RESOURCE, DBA --
+- ê¶Œí•œì„¤ì •
+ GRANT ê¶Œí•œ ëª…[,ê¶Œí•œ ëª…,...] TO ìœ ì €ëª…; -- CONNECT, RESOURCE, DBA --
  GRANT CONNECT, RESOURCE, DBA TO KSG97;
  
- - HR°èÁ¤ È°¼ºÈ­
+ - HRê³„ì • í™œì„±í™”
  ALTER USER HR ACCOUNT UNLOCK;
  ALTER USER HR IDENTIFIED BY java;
-±âº»Å° -> NOT NULL NO DUPLICATE --ÇÊ¼ö ¾Ï±â
+ê¸°ë³¸í‚¤ -> NOT NULL NO DUPLICATE --í•„ìˆ˜ ì•”ê¸°
