@@ -1,77 +1,77 @@
 2022-0415-01)
- 1.¼öÇÐÀû ÇÔ¼ö
-  -ABS, SIGN, POWER, SQRTµîÀÌ Á¦°øµÊ
+ 1.ìˆ˜í•™ì  í•¨ìˆ˜
+  -ABS, SIGN, POWER, SQRTë“±ì´ ì œê³µë¨
   1)ABS(n), SIGN(n), SQRT(n), POWER(e, n)
-   . ABS(n) : ÁÖ¾îÁø ¼ö nÀÇ Àý´ë°ª
-   . SIGN(n) : ÁÖ¾îÁø ¼ö nÀÌ ¾ç¼öÀÌ¸é 1, À½¼öÀÌ¸é -1, 0ÀÌ¸é 0À» ¹ÝÈ¯
-   . SQRT(n) : ÁÖ¾îÁø ¼ö nÀÇ Æò¹æ±Ù ¹ÝÈ¯
-   . POWER(e, n) : eÀÇ n½Â(e¸¦ n¹ø °Åµì °öÇÑ °ª)
-  (»ç¿ë¿¹)
+   . ABS(n) : ì£¼ì–´ì§„ ìˆ˜ nì˜ ì ˆëŒ€ê°’
+   . SIGN(n) : ì£¼ì–´ì§„ ìˆ˜ nì´ ì–‘ìˆ˜ì´ë©´ 1, ìŒìˆ˜ì´ë©´ -1, 0ì´ë©´ 0ì„ ë°˜í™˜
+   . SQRT(n) : ì£¼ì–´ì§„ ìˆ˜ nì˜ í‰ë°©ê·¼ ë°˜í™˜
+   . POWER(e, n) : eì˜ nìŠ¹(eë¥¼ në²ˆ ê±°ë“­ ê³±í•œ ê°’)
+  (ì‚¬ìš©ì˜ˆ)
     SELECT ABS(-2000), ABS(0.0009), ABS(0),
            SIGN(-2000), SIGN(0.0001), SIGN(0),
            SQRT(16), SQRT(3.3), POWER(2,15)
       FROM DUAL;
 
   2)GREATEST(n1,...,nn), LEAST(n1,...,nn)
-   . GREATEST(n1,...,nn) : ÁÖ¾îÁø ¼ö n1 ~ nn Áß °¡Àå Å« ¼ö ¹ÝÈ¯
-   . LEAST(n1,...,nn) : ÁÖ¾îÁø ¼ö n1 ~nn Áß °¡Àå ÀÛÀº ¼ö ¹ÝÈ¯
-  (»ç¿ë¿¹)
-    SELECT GREATEST('È«±æµ¿', 'ÀÌ¼ø½Å', 'È«±æ¼ø'), -- MAX´Â Á¾À¸·Î Á¦½ÃµÈ COLUMN¾ÈÀÇ µ¥ÀÌÅÍ¸¦, GREAST´Â È¾À¸·Î Á¦½ÃµÈ ¿©·Á COLUMNÀÇ µ¥ÀÌÅÍ¸¦ Ã³¸®
+   . GREATEST(n1,...,nn) : ì£¼ì–´ì§„ ìˆ˜ n1 ~ nn ì¤‘ ê°€ìž¥ í° ìˆ˜ ë°˜í™˜
+   . LEAST(n1,...,nn) : ì£¼ì–´ì§„ ìˆ˜ n1 ~nn ì¤‘ ê°€ìž¥ ìž‘ì€ ìˆ˜ ë°˜í™˜
+  (ì‚¬ìš©ì˜ˆ)
+    SELECT GREATEST('í™ê¸¸ë™', 'ì´ìˆœì‹ ', 'í™ê¸¸ìˆœ'), -- MAXëŠ” ì¢…ìœ¼ë¡œ ì œì‹œëœ COLUMNì•ˆì˜ ë°ì´í„°ë¥¼, GREASTëŠ” íš¡ìœ¼ë¡œ ì œì‹œëœ ì—¬ë ¤ COLUMNì˜ ë°ì´í„°ë¥¼ ì²˜ë¦¬
            GREATEST('APPLE', 'AMOND', 100),
            LEAST('APPLE', 'AMOND', 100),
            GREATEST('APPLE', 'AMOND', 'BEE'),
            LEAST('APPLE', 'AMOND', 'BEE')
       FROM DUAL;
-  (»ç¿ë¿¹)È¸¿øÅ×ÀÌºí¿¡¼­ ¸¶ÀÏ¸®Áö¸¦ Á¶È¸ÇÏ¿© 1000º¸´Ù ÀÛÀº °ªÀÌ¸é 1000À» ºÎ¿©ÇÏ°í 100º¸´Ù Å©¸é ¿ø·¡ÀÇ °ªÀ» Ãâ·ÂÇÏ½Ã¿À
-         Alias´Â È¸¿ø¹øÈ£, È¸¿ø¸í, ¿øº»¸¶ÀÏ¸®Áö, º¯°æ¸¶ÀÏ¸®ÁöÀÌ´Ù.
-    SELECT MEM_ID AS È¸¿ø¹øÈ£, MEM_NAME AS È¸¿ø¸í, MEM_MILEAGE AS ¿øº»¸¶ÀÏ¸®Áö, GREATEST(MEM_MILEAGE,1000) AS º¯°æ¸¶ÀÏ¸®Áö
+  (ì‚¬ìš©ì˜ˆ)íšŒì›í…Œì´ë¸”ì—ì„œ ë§ˆì¼ë¦¬ì§€ë¥¼ ì¡°íšŒí•˜ì—¬ 1000ë³´ë‹¤ ìž‘ì€ ê°’ì´ë©´ 1000ì„ ë¶€ì—¬í•˜ê³  100ë³´ë‹¤ í¬ë©´ ì›ëž˜ì˜ ê°’ì„ ì¶œë ¥í•˜ì‹œì˜¤
+         AliasëŠ” íšŒì›ë²ˆí˜¸, íšŒì›ëª…, ì›ë³¸ë§ˆì¼ë¦¬ì§€, ë³€ê²½ë§ˆì¼ë¦¬ì§€ì´ë‹¤.
+    SELECT MEM_ID AS íšŒì›ë²ˆí˜¸, MEM_NAME AS íšŒì›ëª…, MEM_MILEAGE AS ì›ë³¸ë§ˆì¼ë¦¬ì§€, GREATEST(MEM_MILEAGE,1000) AS ë³€ê²½ë§ˆì¼ë¦¬ì§€
       FROM MEMBER;
 
   3)ROUND(n,l), TRUNC(n,l)
-   . ROUND´Â ¹Ý¿Ã¸², TRUNC´Â ÀÚ¸®¹ö¸²À» ¼öÇà
-   . lÀÌ ¾ç¼öÀÌ¸é
-     - ROUND(n,l) : ÁÖ¾îÁø¼ö n¿¡¼­ ¼Ò¼ýÁ¡ ÀÌÇÏ l+1ÀÚ¸®¿¡¼­ ¹Ý¿Ã¸²ÇÏ¿© lÀÚ¸®±îÁö ¹ÝÈ¯
-                    lÀÌ »ý·«µÇ°Å³ª 0ÀÌ¸é ¼Ò¼ö Ã¹¹øÂ° ÀÚ¸®¿¡¼­ ¹Ý¿Ã¸²ÇÏ¿© Á¤¼ö ¹ÝÈ¯
-     - TRUNC(n,l) : ÁÖ¾îÁø¼ö n¿¡¼­ ¼Ò¼ýÁ¡ ÀÌÇÏ l+1ÀÚ¸®¿¡¼­ ÀÚ¸®¹ö¸²
-   . lÀÌ À½¼öÀÌ¸é
-     - ROUND(n,l) : ÁÖ¾îÁø¼ö n¿¡¼­ Á¤¼öºÎºÐ lÀÚ¸®¿¡¼­ ¹Ý¿Ã¸²ÇÏ¿© °á°ú ¹ÝÈ¯
-     - TRUNC(n,l) : ÁÖ¾îÁø¼ö n¿¡¼­ Á¤¼öºÎºÐ lÀÚ¸®¿¡¼­ ÀÚ¸®¹ö¸²
-  (»ç¿ë¿¹)È¸¿øÅ×ÀÌºí¿¡¼­ ¿¬·É´ëº° ¸¶ÀÏ¸®ÁöÇÕ°è¿Í È¸¿ø¼ö¸¦ ±¸ÇÏ½Ã¿À
-         Alias´Â ¿¬·É´ë, È¸¿ø¼ö, ¸¶ÀÏ¸®ÁöÇÕ°èÀÌ´Ù.
+   . ROUNDëŠ” ë°˜ì˜¬ë¦¼, TRUNCëŠ” ìžë¦¬ë²„ë¦¼ì„ ìˆ˜í–‰
+   . lì´ ì–‘ìˆ˜ì´ë©´
+     - ROUND(n,l) : ì£¼ì–´ì§„ìˆ˜ nì—ì„œ ì†Œìˆ«ì  ì´í•˜ l+1ìžë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•˜ì—¬ lìžë¦¬ê¹Œì§€ ë°˜í™˜
+                    lì´ ìƒëžµë˜ê±°ë‚˜ 0ì´ë©´ ì†Œìˆ˜ ì²«ë²ˆì§¸ ìžë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•˜ì—¬ ì •ìˆ˜ ë°˜í™˜
+     - TRUNC(n,l) : ì£¼ì–´ì§„ìˆ˜ nì—ì„œ ì†Œìˆ«ì  ì´í•˜ l+1ìžë¦¬ì—ì„œ ìžë¦¬ë²„ë¦¼
+   . lì´ ìŒìˆ˜ì´ë©´
+     - ROUND(n,l) : ì£¼ì–´ì§„ìˆ˜ nì—ì„œ ì •ìˆ˜ë¶€ë¶„ lìžë¦¬ì—ì„œ ë°˜ì˜¬ë¦¼í•˜ì—¬ ê²°ê³¼ ë°˜í™˜
+     - TRUNC(n,l) : ì£¼ì–´ì§„ìˆ˜ nì—ì„œ ì •ìˆ˜ë¶€ë¶„ lìžë¦¬ì—ì„œ ìžë¦¬ë²„ë¦¼
+  (ì‚¬ìš©ì˜ˆ)íšŒì›í…Œì´ë¸”ì—ì„œ ì—°ë ¹ëŒ€ë³„ ë§ˆì¼ë¦¬ì§€í•©ê³„ì™€ íšŒì›ìˆ˜ë¥¼ êµ¬í•˜ì‹œì˜¤
+         AliasëŠ” ì—°ë ¹ëŒ€, íšŒì›ìˆ˜, ë§ˆì¼ë¦¬ì§€í•©ê³„ì´ë‹¤.
          
-    SELECT TRUNC(TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(MEM_BIR,'YYYY'), -1) AS ¿¬·É´ë,
-           COUNT(*) AS È¸¿ø¼ö, SUM(MEM_MILEAGE) AS ¸¶ÀÏ¸®ÁöÇÕ°è
+    SELECT TRUNC(TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(MEM_BIR,'YYYY'), -1) AS ì—°ë ¹ëŒ€,
+           COUNT(*) AS íšŒì›ìˆ˜, SUM(MEM_MILEAGE) AS ë§ˆì¼ë¦¬ì§€í•©ê³„
       FROM MEMBER
      GROUP BY TRUNC(TO_CHAR(SYSDATE,'YYYY') - TO_CHAR(MEM_BIR,'YYYY'), -1)
-     ORDER BY 2; -- GROUP BY´Â Áý°èÇÔ¼ö¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁö ÄÃ·³À» ´Ù Àû¾îÁà¾ßÇÑ´Ù. -³»°¡ ÇÑ °Í
+     ORDER BY 2; -- GROUP BYëŠ” ì§‘ê³„í•¨ìˆ˜ë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ ì»¬ëŸ¼ì„ ë‹¤ ì ì–´ì¤˜ì•¼í•œë‹¤. -ë‚´ê°€ í•œ ê²ƒ
      
-     SELECT TRUNC(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM MEM_BIR),-1) AS ¿¬·É´ë,
-            COUNT(*) AS È¸¿ø¼ö, SUM(MEM_MILEAGE) AS ¸¶ÀÏ¸®ÁöÇÕ°è
+     SELECT TRUNC(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM MEM_BIR),-1) AS ì—°ë ¹ëŒ€,
+            COUNT(*) AS íšŒì›ìˆ˜, SUM(MEM_MILEAGE) AS ë§ˆì¼ë¦¬ì§€í•©ê³„
        FROM MEMBER
       GROUP BY TRUNC(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM MEM_BIR),-1)
-      ORDER BY 1; -- ¼±»ý´ÔÀÌ ÇÏ½Å °Í
+      ORDER BY 1; -- ì„ ìƒë‹˜ì´ í•˜ì‹  ê²ƒ
       
     SELECT CASE WHEN SUBSTR(MEM_REGNO2,1,1) IN ('1','2') 
                                          THEN 
                                               EXTRACT(YEAR FROM SYSDATE) - (1900 + TO_NUMBER(SUBSTR(MEM_REGNO1,1,2)))
                                          ELSE 
                                               EXTRACT(YEAR FROM SYSDATE) -  (2000 + TO_NUMBER(SUBSTR(MEM_REGNO1,1,2)))
-                                          END AS ³ªÀÌ
+                                          END AS ë‚˜ì´
       FROM MEMBER;
       
   4)FLOOR(n), CELL(n)
-   - FLOOR(n): n°ú °°°Å³ª (nÀÌ Á¤¼öÀÎ°æ¿ì) ÀÛÀº ¼ö Áß °¡Àå Å« Á¤¼ö
-   - CEIL(n): n°ú °°°Å³ª (nÀÌ Á¤¼öÀÎ°æ¿ì) Å« ¼ö Áß °¡Àå ÀÛÀº Á¤¼ö
-  (»ç¿ë¿¹)
+   - FLOOR(n): nê³¼ ê°™ê±°ë‚˜ (nì´ ì •ìˆ˜ì¸ê²½ìš°) ìž‘ì€ ìˆ˜ ì¤‘ ê°€ìž¥ í° ì •ìˆ˜
+   - CEIL(n): nê³¼ ê°™ê±°ë‚˜ (nì´ ì •ìˆ˜ì¸ê²½ìš°) í° ìˆ˜ ì¤‘ ê°€ìž¥ ìž‘ì€ ì •ìˆ˜
+  (ì‚¬ìš©ì˜ˆ)
     SELECT FLOOR(102.6777), FLOOR(102), FLOOR(-102.6777), CEIL(102.6777), CEIL(102), CEIL(-102.6777)
       FROM DUAL;
       
   5)REMAINDER(n,m), MOD(n,m)
-   - ÁÖ¾îÁø ¼ö nÀ» mÀ¸·Î ³ª´« ³ª¸ÓÁö¸¦ ¹ÝÈ¯
-   - ³»ºÎÀûÀ¸·Î ±¸Çö ¹æ¹ýÀÌ ´Ù¸§
-   - MOD(n,m): ÀÏ¹ÝÀûÀÎ ³ª¸ÓÁö¸¦ ¹ÝÈ¯
-   - REMAINDER(n,m) : ³ª¸ÓÁö°¡ mÀÇ Àý¹Ý°ª(0.5)¸¦ ÃÊ°úÇÏ¸é ¹ÝÈ¯ °ªÀº ´ÙÀ½ ¸òÀÌ µÇ±âÀ§ÇØ ÇÊ¿äÇÑ °ªÀÇ À½¼öÀÌ¸ç, ±× ¿Ü´Â MOD¿Í µ¿ÀÏ
-   - ±¸Çö¹æ¹ý
+   - ì£¼ì–´ì§„ ìˆ˜ nì„ mìœ¼ë¡œ ë‚˜ëˆˆ ë‚˜ë¨¸ì§€ë¥¼ ë°˜í™˜
+   - ë‚´ë¶€ì ìœ¼ë¡œ êµ¬í˜„ ë°©ë²•ì´ ë‹¤ë¦„
+   - MOD(n,m): ì¼ë°˜ì ì¸ ë‚˜ë¨¸ì§€ë¥¼ ë°˜í™˜
+   - REMAINDER(n,m) : ë‚˜ë¨¸ì§€ê°€ mì˜ ì ˆë°˜ê°’(0.5)ë¥¼ ì´ˆê³¼í•˜ë©´ ë°˜í™˜ ê°’ì€ ë‹¤ìŒ ëª«ì´ ë˜ê¸°ìœ„í•´ í•„ìš”í•œ ê°’ì˜ ìŒìˆ˜ì´ë©°, ê·¸ ì™¸ëŠ” MODì™€ ë™ì¼
+   - êµ¬í˜„ë°©ë²•
         MOD    = n - m * FLOOR(n/m)
      REMAINDER = n - m * ROUND(n/m)
      EX) MOD(12,5), REMAINDER(12,5)
