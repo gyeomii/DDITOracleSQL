@@ -1,43 +1,43 @@
 2022-0411-01)
 
-4. ³¯Â¥ Å¸ÀÔ
- - ³¯Â¥ ¹× ½Ã°£¿¡ °üÇÑ ÀÚ·á ÀúÀå(³â, ¿ù, ÀÏ, ½Ã, ºÐ, ÃÊ)
- - µ¡¼À°ú »¬¼ÀÀÇ ´ë»óÀÌ µÉ ¼ö ÀÖÀ½
- - DATE, TIMESTAMP Å¸ÀÔÀÌ Á¦°øµÊ
-  (1)DATE Å¸ÀÔ
-   . Ç¥ÁØ ³¯Â¥ Å¸ÀÔ
-   (»ç¿ëÇü½Ä)
-    ÄÃ·³¸í DATE --Å©±â¸¦ ÁöÁ¤ÇÏÁö ¾ÊÀ½
-   (»ç¿ë¿¹)
+4. ë‚ ì§œ íƒ€ìž…
+ - ë‚ ì§œ ë° ì‹œê°„ì— ê´€í•œ ìžë£Œ ì €ìž¥(ë…„, ì›”, ì¼, ì‹œ, ë¶„, ì´ˆ)
+ - ë§ì…ˆê³¼ ëº„ì…ˆì˜ ëŒ€ìƒì´ ë  ìˆ˜ ìžˆìŒ
+ - DATE, TIMESTAMP íƒ€ìž…ì´ ì œê³µë¨
+  (1)DATE íƒ€ìž…
+   . í‘œì¤€ ë‚ ì§œ íƒ€ìž…
+   (ì‚¬ìš©í˜•ì‹)
+    ì»¬ëŸ¼ëª… DATE --í¬ê¸°ë¥¼ ì§€ì •í•˜ì§€ ì•ŠìŒ
+   (ì‚¬ìš©ì˜ˆ)
    CREATE TABLE TEMP05(
     COL1 DATE,
     COL2 DATE,
     COL3 DATE);
-   ** SYSDATE ÇÔ¼ö : ½Ã½ºÅÛÀÌ Á¦°øÇÏ´Â ³¯Â¥ÀÚ·á Á¦°ø
-   ** TO_DATE ÇÔ¼ö : YYYYMMDDÇü½ÄÀÇ Á¤¼ö¸¦ DATEÇüÀ¸·Î º¯È¯
+   ** SYSDATE í•¨ìˆ˜ : ì‹œìŠ¤í…œì´ ì œê³µí•˜ëŠ” ë‚ ì§œìžë£Œ ì œê³µ
+   ** TO_DATE í•¨ìˆ˜ : YYYYMMDDí˜•ì‹ì˜ ì •ìˆ˜ë¥¼ DATEí˜•ìœ¼ë¡œ ë³€í™˜
     INSERT INTO TEMP05 VALUES(SYSDATE, SYSDATE-30, TO_DATE('20190411')+365);
     SELECT * FROM TEMP05;
     
-    SELECT TO_CHAR(COL1, 'YYYYMMDD HH24:MI:SS') AS ÄÃ·³1,
-           TO_CHAR(COL2, 'YYYYMMDD HH24:MI:SS') AS ÄÃ·³2,
-           TO_CHAR(COL3, 'YYYYMMDD HH24:MI:SS') AS ÄÃ·³3
+    SELECT TO_CHAR(COL1, 'YYYYMMDD HH24:MI:SS') AS ì»¬ëŸ¼1,
+           TO_CHAR(COL2, 'YYYYMMDD HH24:MI:SS') AS ì»¬ëŸ¼2,
+           TO_CHAR(COL3, 'YYYYMMDD HH24:MI:SS') AS ì»¬ëŸ¼3
      FROM TEMP05
     
-   ** ³¯Â¥ÀÚ·á - ³¯Â¥°æ°ú => °æ°úµÈ ÀÏ ¼ö Ãâ·Â
-   ** TRUNC ÇÔ¼ö : ÀÚ¸® ¹ØÀ¸·Î Àý»è
-   ** MOD ÇÔ¼ö : ³ª¸ÓÁö¸¦ ±¸ÇÏ´Â ÇÔ¼ö
+   ** ë‚ ì§œìžë£Œ - ë‚ ì§œê²½ê³¼ => ê²½ê³¼ëœ ì¼ ìˆ˜ ì¶œë ¥
+   ** TRUNC í•¨ìˆ˜ : ìžë¦¬ ë°‘ìœ¼ë¡œ ì ˆì‚­
+   ** MOD í•¨ìˆ˜ : ë‚˜ë¨¸ì§€ë¥¼ êµ¬í•˜ëŠ” í•¨ìˆ˜
     SELECT MOD((TRUNC(SYSDATE) - TO_DATE('00010101')-1),7)
-      FROM DUAL; -- SELECT¹®¿¡¼­ SELECT¿Í FROMÀº »ý·«ÇÒ ¼ö ¾ø±â ¶§¹®¿¡ DUALÀÌ¶õ °¡»óÅ×ÀÌºíÀ» »ç¿ë
+      FROM DUAL; -- SELECTë¬¸ì—ì„œ SELECTì™€ FROMì€ ìƒëžµí•  ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— DUALì´ëž€ ê°€ìƒí…Œì´ë¸”ì„ ì‚¬ìš©
       
-  (2)TIMESTAMP Å¸ÀÔ
-   . ½Ã°£´ë¿ª(TIME ZONE Á¤º¸)Á¤º¸Á¦°ø
-   . ¾ÆÁÖ Á¤±³ÇÑ ½Ã°£Á¤º¸(10ºÐÀÇ 1ÃÊ)Á¦°ø
-   (»ç¿ëÇü½Ä)
-   ÄÃ·³¸í TIMESTAMP --½Ã°£´ë¿ª Á¤º¸ ¾øÀ½
-   ÄÃ·³¸í TIMESTAMP WITH TIME ZONE --½Ã°£´ë¿ª Á¤º¸ Æ÷ÇÔ
-   ÄÃ·³¸í TIMESTAMP WITH LOCAL TIME ZONE -- ·ÎÄÃ¼­¹ö°¡ ¼³Ä¡µÈ ½Ã°£´ë¿ªÁ¤º¸·Î 
-                                        -- TIMESTAMP¿Í °°ÀÌ ½Ã°£´ë¿ª Á¤º¸ ¾øÀ½
-   (»ç¿ë¿¹)
+  (2)TIMESTAMP íƒ€ìž…
+   . ì‹œê°„ëŒ€ì—­(TIME ZONE ì •ë³´)ì •ë³´ì œê³µ
+   . ì•„ì£¼ ì •êµí•œ ì‹œê°„ì •ë³´(10ë¶„ì˜ 1ì´ˆ)ì œê³µ
+   (ì‚¬ìš©í˜•ì‹)
+   ì»¬ëŸ¼ëª… TIMESTAMP --ì‹œê°„ëŒ€ì—­ ì •ë³´ ì—†ìŒ
+   ì»¬ëŸ¼ëª… TIMESTAMP WITH TIME ZONE --ì‹œê°„ëŒ€ì—­ ì •ë³´ í¬í•¨
+   ì»¬ëŸ¼ëª… TIMESTAMP WITH LOCAL TIME ZONE -- ë¡œì»¬ì„œë²„ê°€ ì„¤ì¹˜ëœ ì‹œê°„ëŒ€ì—­ì •ë³´ë¡œ 
+                                        -- TIMESTAMPì™€ ê°™ì´ ì‹œê°„ëŒ€ì—­ ì •ë³´ ì—†ìŒ
+   (ì‚¬ìš©ì˜ˆ)
     CREATE TABLE TEMP06(
         COL1 TIMESTAMP,
         COL2 TIMESTAMP WITH TIME ZONE,
@@ -46,18 +46,18 @@
     INSERT INTO TEMP06 VALUES(SYSDATE,SYSDATE,SYSDATE);
     SELECT *FROM TEMP06;
 
-5. ÀÌÁøÀÚ·á Å¸ÀÔ
- - BLOB, BFILE, RAW µîÀÌ Á¦°øµÊ
+5. ì´ì§„ìžë£Œ íƒ€ìž…
+ - BLOB, BFILE, RAW ë“±ì´ ì œê³µë¨
   
   (1)RAW
-   . ºñ±³Àû ÀÛÀº ±Ô¸ðÀÇ ÀÌÁøÀÚ·á ÀúÀå
-   . ÀÎµ¦½º Ã³¸® °¡´É
-   . ¿À¶óÅ¬¿¡¼­ µ¥ÀÌÅÍ ÇØ¼®ÀÌ³ª º¯È¯À» Á¦°øÇÏÁö ¾ÊÀ½
-   . ÃÖ´ë 2000BYTE±îÁö ÀúÀå °¡´É
-   . 16Áø¼ö¿Í 2Áø¼ö ÀúÀå °¡´É
-   (»ç¿ëÇü½Ä)
-    ÄÃ·³¸í RAW(Å©±â)
-   (»ç¿ë¿¹)
+   . ë¹„êµì  ìž‘ì€ ê·œëª¨ì˜ ì´ì§„ìžë£Œ ì €ìž¥
+   . ì¸ë±ìŠ¤ ì²˜ë¦¬ ê°€ëŠ¥
+   . ì˜¤ë¼í´ì—ì„œ ë°ì´í„° í•´ì„ì´ë‚˜ ë³€í™˜ì„ ì œê³µí•˜ì§€ ì•ŠìŒ
+   . ìµœëŒ€ 2000BYTEê¹Œì§€ ì €ìž¥ ê°€ëŠ¥
+   . 16ì§„ìˆ˜ì™€ 2ì§„ìˆ˜ ì €ìž¥ ê°€ëŠ¥
+   (ì‚¬ìš©í˜•ì‹)
+    ì»¬ëŸ¼ëª… RAW(í¬ê¸°)
+   (ì‚¬ìš©ì˜ˆ)
     CREATE TABLE TEMP07(
      COL1 RAW(1000),
      COL2 RAW(1000));
@@ -67,36 +67,36 @@
     SELECT * FROM TEMP07;
     
   (2)BFILE  
-   . ÀÌÁøÀÚ·á ÀúÀå
-   . ¿øº»ÆÄÀÏÀº µ¥ÀÌÅÍº£ÀÌ½º ¹Û¿¡ ÀúÀåÇÏ°í µ¥ÀÌÅÍº£ÀÌ½º¿¡´Â °æ·Î(Path)¸¸ ÀúÀå
-   . °æ·Î °´Ã¼(DIRECTORY)°¡ ÇÊ¿ä
-   . 4GB±îÁö ÀúÀå°¡´É
-   (»ç¿ëÇü½Ä)
-    ÄÃ·³¸í BFILE
-     - µð·ºÅä¸® °´Ã¼ÀÇ º°Äª(Alias)´Â 30BYTE, ÆÄÀÏ¸íÀº 256BYTE±îÁö °¡´É
-    ** ±×¸²ÆÄÀÏ ÀúÀå¼ø¼­
-     0)Å×ÀÌºí »ý¼º
+   . ì´ì§„ìžë£Œ ì €ìž¥
+   . ì›ë³¸íŒŒì¼ì€ ë°ì´í„°ë² ì´ìŠ¤ ë°–ì— ì €ìž¥í•˜ê³  ë°ì´í„°ë² ì´ìŠ¤ì—ëŠ” ê²½ë¡œ(Path)ë§Œ ì €ìž¥
+   . ê²½ë¡œ ê°ì²´(DIRECTORY)ê°€ í•„ìš”
+   . 4GBê¹Œì§€ ì €ìž¥ê°€ëŠ¥
+   (ì‚¬ìš©í˜•ì‹)
+    ì»¬ëŸ¼ëª… BFILE
+     - ë””ë ‰í† ë¦¬ ê°ì²´ì˜ ë³„ì¹­(Alias)ëŠ” 30BYTE, íŒŒì¼ëª…ì€ 256BYTEê¹Œì§€ ê°€ëŠ¥
+    ** ê·¸ë¦¼íŒŒì¼ ì €ìž¥ìˆœì„œ
+     0)í…Œì´ë¸” ìƒì„±
       CREATE TABLE TEMP08(
          COL1 BFILE);
-     1)±×¸²ÆÄÀÏ ÀúÀå
-     2)µð·ºÅä¸®°´Ã¼ »ý¼º
-      ¿¹) CREATE DIRECTORY µð·ºÅä¸®º°Äª AS 'Àý´ë°æ·Î'
+     1)ê·¸ë¦¼íŒŒì¼ ì €ìž¥
+     2)ë””ë ‰í† ë¦¬ê°ì²´ ìƒì„±
+      ì˜ˆ) CREATE DIRECTORY ë””ë ‰í† ë¦¬ë³„ì¹­ AS 'ì ˆëŒ€ê²½ë¡œ'
       CREATE DIRECTORY TEST_DIR AS 'D:\WORK\oracle';
-     3)µ¥ÀÌÅÍ »ðÀÔ
+     3)ë°ì´í„° ì‚½ìž…
       INSERT INTO TEMP08
         VALUES(BFILENAME('TEST_DIR', 'SAMPLE.jpg'));
       SELECT * FROM TEMP08;
   (3)BLOB
-   . ÀÌÁøÀÚ·á ÀúÀå
-   . ¿øº» ÀÌÁøÀÚ·á¸¦ µ¥ÀÌÅÍÅ×ÀÌºí¾È¿¡ ÀúÀå
-   . 4GB±îÁö ÀúÀå°¡´É
-   (»ç¿ëÇü½Ä)
-    ÄÃ·³¸í BLOB
-    ** ±×¸²ÆÄÀÏ ÀúÀå¼ø¼­
-     0)Å×ÀÌºí »ý¼º
+   . ì´ì§„ìžë£Œ ì €ìž¥
+   . ì›ë³¸ ì´ì§„ìžë£Œë¥¼ ë°ì´í„°í…Œì´ë¸”ì•ˆì— ì €ìž¥
+   . 4GBê¹Œì§€ ì €ìž¥ê°€ëŠ¥
+   (ì‚¬ìš©í˜•ì‹)
+    ì»¬ëŸ¼ëª… BLOB
+    ** ê·¸ë¦¼íŒŒì¼ ì €ìž¥ìˆœì„œ
+     0)í…Œì´ë¸” ìƒì„±
       CREATE TABLE TEMP09(
         COL1 BLOB);
-     1)ÀÍ¸íºí·Ï(PL/SQL)ÀÛ¼º
+     1)ìµëª…ë¸”ë¡(PL/SQL)ìž‘ì„±
       DECLARE
         L_DIR VARCHAR2(20):= 'TEST_DIR';
         L_FILE VARCHAR2(30):= 'SAMPLE.jpg';
