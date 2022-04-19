@@ -40,16 +40,17 @@
   . 주로 2월의 마지막일자(윤년/평년)를 출력할 때 사용됨
  (사용예)사원테이블에서 2월에 입사한 사원정보를 조회하시오.
         Alias는 사원번호, 사원명, 부서명, 직책, 입사일이다.
-    SELECT A.EMPLOEE_ID AS 사원번호, A.EMP_NAME AS 사원명, B.DEPARTMENT_NAME AS 부서명, C.JOB_FILE AS 직무, A. HIRE_DATE AS 입사일
+    SELECT A.EMPLOYEE_ID AS 사원번호, A.EMP_NAME AS 사원명, B.DEPARTMENT_NAME AS 부서명, C.JOB_TITLE AS 직무, A. HIRE_DATE AS 입사일
       FROM HR.employees A, HR.departments B, HR.jobs C
      WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
        AND A.JOB_ID = C.JOB_ID
        AND EXTRACT(MONTH FROM A.HIRE_DATE) = 2;
+       
  (사용예)매입테이블(BUYPROD)에서 2020년 2월 매입집계를 구하시오.
         Alias는 날짜, 매수량합계, 매입금액합계이며 날짜순으로 출력하시오.
     SELECT BUY_DATE AS 날짜, SUM(BUY_QTY) AS 매수량합계, SUM(BUY_QTY * BUY_COST) AS 매입금액합계
       FROM BUYPROD
-     WHERE BUY_DATE BRTWEEN TO_DATE('20200201') AND LAST_DAY(TO_DATE('202002'))
+     WHERE BUY_DATE BETWEEN TO_DATE('20200201') AND LAST_DAY(TO_DATE('20200201'))
      GROUP BY BUY_DATE
      ORDER BY 1;
      
@@ -68,7 +69,7 @@
         사원테이블에서 근속년수가 15년 이상인 사원을 조회하시오
         Alias는 사원번호, 사원명, 입사일, 근속년수, 급여이다.
         SELECT EMPLOYEE_ID AS 사원번호, EMP_NAME AS 사원명, HIRE_DATE AS 입사일,
-               EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(TEAR FROM HIRE_DATE) AS 근속년수, SALARY AS 급여
+               EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(YEAR FROM HIRE_DATE) AS 근속년수, SALARY AS 급여
           FROM HR.employees
-         WHERE EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(TEAR FROM HIRE_DATE) >= 15
+         WHERE EXTRACT(YEAR FROM TO_DATE('20200418')) - EXTRACT(YEAR FROM HIRE_DATE) >= 15
          ORDER BY 4 DESC;
