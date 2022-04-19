@@ -1,27 +1,27 @@
 2022-0407-01)
-1.DML¸í·É(Data Manipulation Language)
- 1) Å×ÀÌºí »ý¼º¸í·É(CREATE TABLE) - > DDL(Data Definition Language)
-  - ¿À¶óÅ¬¿¡¼­ »ç¿ë µÉ Å×ÀÌºíÀ» »ý¼º
-  (»ç¿ëÇü½Ä)
-  CREATE TABLE Å×ÀÌºí¸í (
-    ÄÃ·³¸í Å×ÀÌÅÍÅ¸ÀÔ [(Å©±â)] [NOT NULL] [DEFAULT °ª] [,]
+1.DMLëª…ë ¹(Data Manipulation Language)
+ 1) í…Œì´ë¸” ìƒì„±ëª…ë ¹(CREATE TABLE) - > DDL(Data Definition Language)
+  - ì˜¤ë¼í´ì—ì„œ ì‚¬ìš© ë  í…Œì´ë¸”ì„ ìƒì„±
+  (ì‚¬ìš©í˜•ì‹)
+  CREATE TABLE í…Œì´ë¸”ëª… (
+    ì»¬ëŸ¼ëª… í…Œì´í„°íƒ€ìž… [(í¬ê¸°)] [NOT NULL] [DEFAULT ê°’] [,]
                     :
-    ÄÃ·³¸í Å×ÀÌÅÍÅ¸ÀÔ [(Å©±â)] [NOT NULL] [DEFAULT °ª] [,]
-    [CONSTRAINT ±âº»Å°ÀÎµ¦½º¸í PRIMARY KEY (ÄÃ·Å¸í[,ÄÃ·³¸í,...])[,]]
-    [CONSTRAINT ¿Ü·¡Å°ÀÎµ¦½º¸í FOREIGN KEY (ÄÃ·Å¸í[,ÄÃ·³¸í,...])
-        REFERENCES Å×ÀÌºí¸í(ÄÃ·Å¸í[,ÄÃ·³¸í,...])[,]]
-    [CONSTRAINT ±âº»Å°ÀÎµ¦½º¸í PRIMARY KEY (ÄÃ·Å¸í[,ÄÃ·³¸í,...])[,]]
-    [CONSTRAINT ¿Ü·¡Å°ÀÎµ¦½º¸í FOREIGN KEY (ÄÃ·Å¸í[,ÄÃ·³¸í,...])
-        REFERENCES Å×ÀÌºí¸í(ÄÃ·Å¸í[,ÄÃ·³¸í,...])]);
-    . 'Å×ÀÌºí¸í', ÄÃ·³¸í, ÀÎµ¦½º¸í : »ç¿ëÀÚÁ¤ÀÇ´Ü¾î¸¦ »ç¿ë
-    . 'NOT NULL'ÀÌ ±â¼úµÈ ÄÃ·³Àº µ¥ÀÌÅÍ »ðÀÔ½Ã »ý·« ºÒ°¡´É
-    . 'DEFAULT °ª': »ç¿ëÀÚ°¡ µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇÏÁö ¾ÊÀº °æ¿ì ÀÚµ¿À¸·Î »ðÀÔµÇ´Â °ª
-    . '±âº»Å°ÀÎµ¦½º¸í', '¿Ü·¡Å°ÀÎµ¦½º¸í', 'Å×ÀÌºí¸í'Àº Áßº¹µÇ¾î¼­´Â ¾È‰Î
-    .'Å×ÀÌºí¸í(ÄÃ·Å¸í[,ÄÃ·³¸í,...])' : ºÎ¸ðÅ×ÀÌºí¸í ¹× ºÎ¸ðÅ×ÀÌºí¿¡¼­ »ç¿ëµÈ ÄÃ·³¸í
+    ì»¬ëŸ¼ëª… í…Œì´í„°íƒ€ìž… [(í¬ê¸°)] [NOT NULL] [DEFAULT ê°’] [,]
+    [CONSTRAINT ê¸°ë³¸í‚¤ì¸ë±ìŠ¤ëª… PRIMARY KEY (ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])[,]]
+    [CONSTRAINT ì™¸ëž˜í‚¤ì¸ë±ìŠ¤ëª… FOREIGN KEY (ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])
+        REFERENCES í…Œì´ë¸”ëª…(ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])[,]]
+    [CONSTRAINT ê¸°ë³¸í‚¤ì¸ë±ìŠ¤ëª… PRIMARY KEY (ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])[,]]
+    [CONSTRAINT ì™¸ëž˜í‚¤ì¸ë±ìŠ¤ëª… FOREIGN KEY (ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])
+        REFERENCES í…Œì´ë¸”ëª…(ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])]);
+    . 'í…Œì´ë¸”ëª…', ì»¬ëŸ¼ëª…, ì¸ë±ìŠ¤ëª… : ì‚¬ìš©ìžì •ì˜ë‹¨ì–´ë¥¼ ì‚¬ìš©
+    . 'NOT NULL'ì´ ê¸°ìˆ ëœ ì»¬ëŸ¼ì€ ë°ì´í„° ì‚½ìž…ì‹œ ìƒëžµ ë¶ˆê°€ëŠ¥
+    . 'DEFAULT ê°’': ì‚¬ìš©ìžê°€ ë°ì´í„°ë¥¼ ìž…ë ¥í•˜ì§€ ì•Šì€ ê²½ìš° ìžë™ìœ¼ë¡œ ì‚½ìž…ë˜ëŠ” ê°’
+    . 'ê¸°ë³¸í‚¤ì¸ë±ìŠ¤ëª…', 'ì™¸ëž˜í‚¤ì¸ë±ìŠ¤ëª…', 'í…Œì´ë¸”ëª…'ì€ ì¤‘ë³µë˜ì–´ì„œëŠ” ì•ˆëŒ
+    .'í…Œì´ë¸”ëª…(ì»¬ë ´ëª…[,ì»¬ëŸ¼ëª…,...])' : ë¶€ëª¨í…Œì´ë¸”ëª… ë° ë¶€ëª¨í…Œì´ë¸”ì—ì„œ ì‚¬ìš©ëœ ì»¬ëŸ¼ëª…
     
-»ç¿ë ¿¹)
+ì‚¬ìš© ì˜ˆ)
 CREATE TABLE GOODS(
-             GOOD_ID CHAR(4)NOT NULL, --±âº»Å°
+             GOOD_ID CHAR(4)NOT NULL, --ê¸°ë³¸í‚¤
              GOOD_NAME VARCHAR2(50),
              PRICE NUMBER(8)
   CONSTRAINT pk_goods PRIMARY KEY(GOOD_ID));
@@ -51,48 +51,48 @@ CREATE TABLE GOOD_ORDERS(
   CONSTRAINT fk_gord_goodS FOREIGN KEY(GOOD_ID)
     REFERENCES GOODS(GOOD_ID));
     
-2. INSERT¸í·É
- - »ý¼ºµÈ Å×ÀÌºí¿¡ »õ·Î¿î ÀÚ·á¸¦ ÀÔ·Â
- (»ç¿ëÇü½Ä)
- INSERT INTO Å×ÀÌºí¸í[(ÄÃ·³¸í[,ÄÃ·³¸í,...])]
-   VALUES(°ª1[°ª2,...]);
- . 'Å×ÀÌºí¸í [(ÄÃ·³¸í[,ÄÃ·³¸í,...])]': 'ÄÃ·³¸í'ÀÌ »ý·«µÇ°í Å×ÀÌºí¸í¸¸ ±â¼úµÇ¸é
-   Å×ÀÌºíÀÇ ¸ðµç ÄÃ·³¿¡ ÀÔ·ÂµÉ µ¥ÀÌÅÍ¸¦ ¼ø¼­¿¡ ¸ÂÃß¾î ±â¼úÇØ¾ßÇÔ(°¹¼ö ¹× ¼ø¼­ ÀÏÄ¡)
- . '(ÄÃ·³¸í[,ÄÃ·³¸í,...])': ÀÔ·ÂÇÒ µ¥ÀÌÅÍ¿¡ ÇØ´çÇÏ´Â ÄÃ·³¸¸ ±â¼ú
-   ´Ü, NOT NULL ÄÃ·³Àº »ý·«ÇÒ ¼ö ¾øÀ½
+2. INSERTëª…ë ¹
+ - ìƒì„±ëœ í…Œì´ë¸”ì— ìƒˆë¡œìš´ ìžë£Œë¥¼ ìž…ë ¥
+ (ì‚¬ìš©í˜•ì‹)
+ INSERT INTO í…Œì´ë¸”ëª…[(ì»¬ëŸ¼ëª…[,ì»¬ëŸ¼ëª…,...])]
+   VALUES(ê°’1[ê°’2,...]);
+ . 'í…Œì´ë¸”ëª… [(ì»¬ëŸ¼ëª…[,ì»¬ëŸ¼ëª…,...])]': 'ì»¬ëŸ¼ëª…'ì´ ìƒëžµë˜ê³  í…Œì´ë¸”ëª…ë§Œ ê¸°ìˆ ë˜ë©´
+   í…Œì´ë¸”ì˜ ëª¨ë“  ì»¬ëŸ¼ì— ìž…ë ¥ë  ë°ì´í„°ë¥¼ ìˆœì„œì— ë§žì¶”ì–´ ê¸°ìˆ í•´ì•¼í•¨(ê°¯ìˆ˜ ë° ìˆœì„œ ì¼ì¹˜)
+ . '(ì»¬ëŸ¼ëª…[,ì»¬ëŸ¼ëª…,...])': ìž…ë ¥í•  ë°ì´í„°ì— í•´ë‹¹í•˜ëŠ” ì»¬ëŸ¼ë§Œ ê¸°ìˆ 
+   ë‹¨, NOT NULL ì»¬ëŸ¼ì€ ìƒëžµí•  ìˆ˜ ì—†ìŒ
 
-»ç¿ë¿¹)´ÙÀ½ ÀÚ·á¸¦ GOODSÅ×ÀÌºí¿¡ ÀúÀåÇÏ½Ã¿À
+ì‚¬ìš©ì˜ˆ)ë‹¤ìŒ ìžë£Œë¥¼ GOODSí…Œì´ë¸”ì— ì €ìž¥í•˜ì‹œì˜¤
 -------------------------------------------
-    »óÇ°ÄÚµå        »óÇ°¸í      °¡°Ý
-    P101           º¼Ææ       500
-    P102           ¸¶¿ì½º    15000
-    P103           ¿¬ÇÊ       300
-    P104           Áö¿ì°³     1000
-    P201           A4¿ëÁö     7000
-INSERT INTO GOODS VALUES('p101', 'º¼Ææ', 500);
-INSERT INTO GOODS(GOOD_ID,GOOD_NAME) VALUES('p102', '¸¶¿ì½º');
-INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p103', '¿¬ÇÊ', 300);
-INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p104', 'Áö¿ì°³', 1000);
-INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p201', 'A4¿ëÁö', 7000);
+    ìƒí’ˆì½”ë“œ        ìƒí’ˆëª…      ê°€ê²©
+    P101           ë³¼íŽœ       500
+    P102           ë§ˆìš°ìŠ¤    15000
+    P103           ì—°í•„       300
+    P104           ì§€ìš°ê°œ     1000
+    P201           A4ìš©ì§€     7000
+INSERT INTO GOODS VALUES('p101', 'ë³¼íŽœ', 500);
+INSERT INTO GOODS(GOOD_ID,GOOD_NAME) VALUES('p102', 'ë§ˆìš°ìŠ¤');
+INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p103', 'ì—°í•„', 300);
+INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p104', 'ì§€ìš°ê°œ', 1000);
+INSERT INTO GOODS(GOOD_ID,GOOD_NAME,PRICE) VALUES('p201', 'A4ìš©ì§€', 7000);
   SELECT * FROM GOODS;
 
-»ç¿ë¿¹) °í°´Å×ÀÌºí(CUSTS)¿¡ ´ÙÀ½ÀÚ·á¸¦ ÀÔ·ÂÇÏ½Ã¿À
-    °í°´¹øÈ£   °í°´¸í     ÁÖ¼Ò
+ì‚¬ìš©ì˜ˆ) ê³ ê°í…Œì´ë¸”(CUSTS)ì— ë‹¤ìŒìžë£Œë¥¼ ìž…ë ¥í•˜ì‹œì˜¤
+    ê³ ê°ë²ˆí˜¸   ê³ ê°ëª…     ì£¼ì†Œ
 ------------------------------------------
-    a001      È«±æµ¿    ´ëÀü½Ã Áß±¸ °è·æ·Î 846
-    a002      ÀÌÀÎ¼ö    ¼­¿ï½Ã ¼ººÏ±¸ ÀåÀ§1µ¿ 66
+    a001      í™ê¸¸ë™    ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846
+    a002      ì´ì¸ìˆ˜    ì„œìš¸ì‹œ ì„±ë¶êµ¬ ìž¥ìœ„1ë™ 66
 
- INSERT INTO CUSTS VALUES('a001', 'È«±æµ¿', '´ëÀü½Ã Áß±¸ °è·æ·Î 846');
- INSERT INTO CUSTS(CUST_ID, CUST_NAME, ADDRESS) VALUES('a002', 'ÀÌÀÎ¼ö', '¼­¿ï½Ã ¼ººÏ±¸ ÀåÀ§1µ¿ 66');
+ INSERT INTO CUSTS VALUES('a001', 'í™ê¸¸ë™', 'ëŒ€ì „ì‹œ ì¤‘êµ¬ ê³„ë£¡ë¡œ 846');
+ INSERT INTO CUSTS(CUST_ID, CUST_NAME, ADDRESS) VALUES('a002', 'ì´ì¸ìˆ˜', 'ì„œìš¸ì‹œ ì„±ë¶êµ¬ ìž¥ìœ„1ë™ 66');
  SELECT * FROM CUSTS;
    
-»ç¿ë¿¹)¿À´Ã È«±æµ¿ °í°´ÀÌ ·Î±×ÀÎ ÇßÀ» °æ¿ì ÁÖ¹®Å×ÀÌºí¿¡ ÇØ´ç»çÇ×À» ÀÔ·ÂÇÏ½Ã¿À
+ì‚¬ìš©ì˜ˆ)ì˜¤ëŠ˜ í™ê¸¸ë™ ê³ ê°ì´ ë¡œê·¸ì¸ í–ˆì„ ê²½ìš° ì£¼ë¬¸í…Œì´ë¸”ì— í•´ë‹¹ì‚¬í•­ì„ ìž…ë ¥í•˜ì‹œì˜¤
   INSERT INTO ORDERS(ORDER_ID, CUST_ID) VALUES('20220407001', 'a001');
   SELECT * FROM ORDERS;
 
 
-»ç¿ë¿¹) ¿À´Ã È«±æµ¿ °í°´ÀÌ ´ÙÀ½°ú °°ÀÌ ±¸¸ÅÇßÀ» ¶§ ±¸¸Å»óÇ°Å×ÀÌºí(GOOD_ORDERS)¿¡ ÀÚ·á¸¦ ÀúÀåÇÏ½Ã¿À.
-±¸¸Å¹øÈ£        »óÇ°¹øÈ£      ¼ö·®
+ì‚¬ìš©ì˜ˆ) ì˜¤ëŠ˜ í™ê¸¸ë™ ê³ ê°ì´ ë‹¤ìŒê³¼ ê°™ì´ êµ¬ë§¤í–ˆì„ ë•Œ êµ¬ë§¤ìƒí’ˆí…Œì´ë¸”(GOOD_ORDERS)ì— ìžë£Œë¥¼ ì €ìž¥í•˜ì‹œì˜¤.
+êµ¬ë§¤ë²ˆí˜¸        ìƒí’ˆë²ˆí˜¸      ìˆ˜ëŸ‰
 ------------------------------------------------------
 20220407001   p101          5
 20220407002   p102          10
@@ -119,23 +119,23 @@ SELECT * FROM GOOD_ORDERS;
     SELECT * FROM ORDERS;
     SELECT * FROM GOOD_ORDERS;
 
-3.UPDATE ¸í·É
- - ÀÌ¹Ì Å×ÀÌºí¿¡ Á¸´ëÇÏ´Â ÀÚ·á¸¦ ¼öÁ¤ÇÒ ¶§ »ç¿ë
- (»ç¿ëÇü½Ä)
- UPDATE Å×ÀÌºí¸í
-    SET ÄÃ·³¸í = °ª[,]
+3.UPDATE ëª…ë ¹
+ - ì´ë¯¸ í…Œì´ë¸”ì— ì¡´ëŒ€í•˜ëŠ” ìžë£Œë¥¼ ìˆ˜ì •í•  ë•Œ ì‚¬ìš©
+ (ì‚¬ìš©í˜•ì‹)
+ UPDATE í…Œì´ë¸”ëª…
+    SET ì»¬ëŸ¼ëª… = ê°’[,]
           :
-        ÄÃ·Å¸í = °ª[,]
-    [WHERE Á¶°Ç]; --WHERE°¡ ¾øÀ¸¸é ´ë»óÄÃ·³ÀÇ ¸ðµç ÇàÀÇ °ªÀ» ¹Ù²Û´Ù.
+        ì»¬ë ´ëª… = ê°’[,]
+    [WHERE ì¡°ê±´]; --WHEREê°€ ì—†ìœ¼ë©´ ëŒ€ìƒì»¬ëŸ¼ì˜ ëª¨ë“  í–‰ì˜ ê°’ì„ ë°”ê¾¼ë‹¤.
     
  UPDATE GOODS
     SET PRICE = 15000
     WHERE GOOD_ID = 'p102';
     
-SELECT PROD_NAME AS »óÇ°¸í,
-    PROD_COST AS ¸ÅÀÔ´Ü°¡
+SELECT PROD_NAME AS ìƒí’ˆëª…,
+    PROD_COST AS ë§¤ìž…ë‹¨ê°€
     FROM PROD;    
-»ç¿ë¿¹) »óÇ°Å×ÀÌºí¿¡¼­ ºÐ·ùÄÚµå°¡ 'p101'¿¡ ¼ÓÇÑ »óÇ°ÀÇ ¸ÅÀÔ°¡°ÝÀ» 10% ÀÎ»óÇÏ½Ã¿À.
+ì‚¬ìš©ì˜ˆ) ìƒí’ˆí…Œì´ë¸”ì—ì„œ ë¶„ë¥˜ì½”ë“œê°€ 'p101'ì— ì†í•œ ìƒí’ˆì˜ ë§¤ìž…ê°€ê²©ì„ 10% ì¸ìƒí•˜ì‹œì˜¤.
 
 UPDATE PROD
     SET PROD_COST = PROD_COST + ROUND(PROD_COST * 0.1);
