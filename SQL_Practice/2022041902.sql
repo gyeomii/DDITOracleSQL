@@ -34,14 +34,6 @@
       FROM HR.employees
      GROUP BY DEPARTMENT_ID
      ORDER BY 1;
-     
-    SELECT B.DEPARTMENT_NAME AS 부서명, A.DEPARTMENT_ID AS 부서코드,
-           SUM(A.SALARY) AS 급여합계, ROUND(AVG(A.SALARY)) AS 평균급여,
-           MAX(A.SALARY) AS 최대급여, MIN(A.SALARY) AS 최소급여, COUNT(*) AS 사원수
-      FROM HR.employees A, HR.departments B
-     WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID
-     GROUP BY A.DEPARTMENT_ID, B.DEPARTMENT_NAME
-     ORDER BY 2;
     
  (사용예)사원테이블에서 부서별 평균급여가 6000이상인 부서를 조회하시오.
     SELECT  DEPARTMENT_ID AS 부서코드, ROUND(AVG(SALARY)) AS 평균급여
@@ -63,64 +55,47 @@
      GROUP BY CART_MEMBER
      ORDER BY 2 DESC;
      
-  (사용예)매입테이블(BUYPROD)에서 2020년 상반기(1월~6월) 월별, 제품별 매입집계를 조회하시오.
-    SELECT EXTRACT(MONTH FROM BUY_DATE) AS 월, BUY_PROD AS 제품코드,
-           SUM(BUY_QTY) AS 수량합계, SUM(BUY_QTY * BUY_COST) AS 금액집계 
-      FROM BUYPROD
-     WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200630')
-     GROUP BY EXTRACT(MONTH FROM BUY_DATE), BUY_PROD
-     ORDER BY 1,2;
-     
-    SELECT EXTRACT(MONTH FROM A.BUY_DATE) AS 월, A.BUY_PROD AS 제품코드, B.PROD_NAME AS 제품명,
-           SUM(A.BUY_QTY) AS 수량합계,  SUM(A.BUY_QTY * A.BUY_COST) AS 매입금액합계 
-      FROM BUYPROD A, PROD B
-     WHERE A.BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200630') AND A.BUY_PROD = B.PROD_ID
-     GROUP BY EXTRACT(MONTH FROM A.BUY_DATE), A.BUY_PROD, B.PROD_NAME
-     ORDER BY 1,2;
-  
-  (사용예)매입테이블(BUYPROD)에서 2020년 상반기(1월~6월) 월별 매입집계를 조회하되 매입금액이 1억원 이상인 월만 조회하시오.
-    SELECT EXTRACT(MONTH FROM BUY_DATE) AS 월,
-           SUM(BUY_QTY) AS 수량합계, SUM(BUY_QTY * BUY_COST) AS 매입금액합계
-      FROM BUYPROD
-     WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200630')
-     GROUP BY EXTRACT(MONTH FROM BUY_DATE)
-    HAVING SUM(BUY_COST * BUY_QTY) >= 100000000
-     ORDER BY 1,2;
-  
-  (사용예)매입테이블(BUYPROD)에서 2020년 상반기(1월~6월) 제품별 매입집계를 조회하되 금액 기준 상위 5개 제품만 조회하시오.
-    SELECT A.BID AS 제품코드, A.QSUM AS 수량합계, A.CSUM AS 매입금액합계
-      FROM (SELECT BUY_PROD AS BID, SUM(BUY_QTY) AS QSUM,
-                   SUM(BUY_QTY * BUY_COST) AS CSUM
-              FROM BUYPROD
-             WHERE BUY_DATE BETWEEN TO_DATE('20200101') AND TO_DATE('20200630')
-             GROUP BY BUY_PROD
-             ORDER BY 3 DESC ) A
-     WHERE ROWNUM <= 5; 
-     
-  (사용예)회원테이블에서 성별 평균 마일리지를 조회하시오.
-    SELECT CASE WHEN SUBSTR(MEM_REGNO2,1,1)='1' OR SUBSTR(MEM_REGNO2,1,1)='3' THEN '남성회원'
-           ELSE '여성회원' END AS 성별, COUNT(*) AS 회원수, ROUND(AVG(MEM_MILEAGE)) AS 평균마일리지
-      FROM MEMBER
-     GROUP BY CASE WHEN SUBSTR(MEM_REGNO2,1,1)='1' OR SUBSTR(MEM_REGNO2,1,1)='3' THEN '남성회원' ELSE '여성회원' END
-     ORDER BY 3 DESC;
+ 5. ROLLUP 과 CUBE
+  1) ROLLUP
+   - GROUP BY 절 안에 사용하여 레벨 별 집계의 결과를 반환
+  (사용형식)
+   GROUP BY ROLLUP(컬럼명1[,컬럼명2,...,컬럼명n])
+    . 컬럼명1,컬럼명2,...,컬럼명n을(가장 하위레벨) 기준으로 그룹 구성하여 그룹함수를 수행한 후
+      오른쪽에 기술된 컬럼명을 하나씩 제거한 기준으로 그룹수성, 마지막으로 전체(가장 상위레벨) 합계 반환
+    . n개의 컬럼이 사용된 경우 n+1종류의 집계반환
     
-  (사용예)회원테이블에서 연령별 평균 마일리지를 조회하시오.
-    SELECT TRUNC(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM MEM_BIR),-1) AS 연령대,
-           COUNT(*) AS 회원수, ROUND(AVG(MEM_MILEAGE)) AS 평균마일리지
-      FROM MEMBER
-     GROUP BY TRUNC(EXTRACT(YEAR FROM SYSDATE) - EXTRACT(YEAR FROM MEM_BIR),-1)
-     ORDER BY 3 DESC; 
+  (사용예)장바구니 테이블에서 2020년 월별, 회원별, 제품별 판매수량집계를 조회하시오.
+    SELECT SUBSTR(CART_NO,5,2) AS 월, CART_MEMBER AS 회원번호, CART_PROD AS 제품코드, SUM(CART_QTY)판매수량집계
+      FROM CART
+     WHERE SUBSTR(CART_NO,1,4) = '2020'
+     GROUP BY ROLLUP(SUBSTR(CART_NO,5,2), CART_MEMBER, CART_PROD)
+     ORDER BY 1;
+  
+  **부분 ROLLUP
+   . 그룹을 분류 기준 컬럼이 ROLLUP절 밖(GRUOP BY 절 안)에 기술된 경우를 부분 ROLLUP 이라고 함
+   . EX) GROUP BY 컬럼명1, ROLLUP(컬럼명2, 컬럼명3) 인경우
+     -> 컬럼명1, 컬럼명2, 컬럼명3 모두가 적용된 집계
+        컬럼명1, 컬럼명2 가 반영된 집계
+        컬럼명1 만 반영된 집계
+        
+   (사용예)부분 ROLLUP
+    SELECT SUBSTR(CART_NO,5,2) AS 월, CART_MEMBER AS 회원번호, CART_PROD AS 제품코드, SUM(CART_QTY)판매수량집계
+      FROM CART
+     WHERE SUBSTR(CART_NO,1,4) = '2020'
+     GROUP BY CART_PROD, ROLLUP(SUBSTR(CART_NO,5,2), CART_MEMBER)
+     ORDER BY 1;
+    
+  2) CUBE
+   - GROUP BY 절 안에서 사용(ROLLUP과 동일)
+   - 레벨개념이 없음
+   - CUBE 내에 기술된 컬럼들의 조합 가능한 경우마다 집계반환
+   - n개의 컬럼이 사용된 경우 2^n 종류의 집계반환
+  (사용형식)
+     GROUP BY CUBE(컬럼명1,컬럼명2,...,컬럼명n);
      
-  (사용예)회원테이블에서 거주지별 평균 마일리지를 조회하시오.
-    SELECT SUBSTR(MEM_ADD1,1,2) AS 거주지, COUNT(*) AS 회원수, ROUND(AVG(MEM_MILEAGE)) AS 마일리지
-      FROM MEMBER
-     GROUP BY SUBSTR(MEM_ADD1,1,2)
-     ORDER BY 3 DESC;
-         
-  
-  
-  
-  
-  
-  
-  
+  (사용예)CUBE
+     SELECT SUBSTR(CART_NO,5,2) AS 월, CART_MEMBER AS 회원번호, CART_PROD AS 제품코드, SUM(CART_QTY)판매수량집계
+      FROM CART
+     WHERE SUBSTR(CART_NO,1,4) = '2020'
+     GROUP BY CUBE(SUBSTR(CART_NO,5,2), CART_MEMBER, CART_PROD)
+     ORDER BY 1;
