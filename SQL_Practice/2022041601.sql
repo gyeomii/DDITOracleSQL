@@ -12,7 +12,7 @@ DML: 데이터 조작어(Data manipulation Language)
  - UPDATE: 데이터 변경 (UPDATE~SET~WHERE)
  - DELETE: 데이터 삭제 (DELETE FROM~WHERE)
 
-DCL: 데이터 제의어(Data Control Language)
+DCL: 데이터 제어어(Data Control Language)
  - 데이터베이스 관리자가 데이터 보안, 무결성 유지, 병행 제어, 회복을 위해 
    DBA가 사용하는 제어용 언어
  - GRANT, REVOKE, [COMMIT, ROLLBACK, SAVEPOINT 는 TCL이라고도 불림]문이 있음
