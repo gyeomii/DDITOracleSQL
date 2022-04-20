@@ -1,4 +1,5 @@
 2022-0420-01)
+사용예제
   (사용예)매입테이블(BUYPROD)에서 2020년 상반기(1월~6월) 월별, 제품별 매입집계를 조회하시오.
     SELECT EXTRACT(MONTH FROM BUY_DATE) AS 월, BUY_PROD AS 제품코드,
            SUM(BUY_QTY) AS 수량합계, SUM(BUY_QTY * BUY_COST) AS 금액집계 
