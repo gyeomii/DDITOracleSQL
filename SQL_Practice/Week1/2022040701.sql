@@ -138,7 +138,7 @@ SELECT PROD_NAME AS 상품명,
 사용예) 상품테이블에서 분류코드가 'p101'에 속한 상품의 매입가격을 10% 인상하시오.
 
 UPDATE PROD
-    SET PROD_COST = PROD_COST + ROUND(PROD_COST * 0.1);
+    SET PROD_COST = PROD_COST + ROUND(PROD_COST * 0.1)
     WHERE PROD_LGU ='P101';
 
 ROLLBACK;
