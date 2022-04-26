@@ -20,6 +20,7 @@
       FROM 테이블명
     [WHERE 조건]
     [ORDER BY 컬럼명|컬럼index [ASC|DESC],...];
+    
 1.UNION
  - 중복을 허락하지 않은 합집합의 결과를 반환
  - 각 SELECT문의 결과를 모두 포함
@@ -66,4 +67,26 @@
            0 AS PARENT_ID, 1 AS LEVELS
       FROM HR.DEPTS
      WHERE PARENT_ID IS NULL;
- (사용예)DEPTS테이블에서 NULL인 상위부서코드의 부서코드와 같은 부서코드를 가진
+     
+ (사용예)DEPTS테이블에서 NULL인 상위부서코드의 부서코드를 상위부서코드로 가진 부서의 부서코드, 부서명, 상위부서코드, 레벨을 조회하시오.
+        단 레벨은 2이다.
+    SELECT B.DEPARTMENT_ID AS 부서코드,
+           LPAD(' ',4*(2-1))||B.DEPARTMENT_NAME AS DEPARTMENT_NAME,
+           B.PARENT_ID AS PARENT_ID, 2 AS LEVELS
+      FROM HR.DEPTS A, HR.DEPTS B --SELF JOIN
+     WHERE A.PARENT_ID IS NULL
+       AND B.PARENT_ID=A.DEPARTMENT_ID;
+       
+  (결합)
+    SELECT DEPARTMENT_ID AS 부서코드,
+           DEPARTMENT_NAME AS 부서명,
+           0 AS PARENT_ID, 1 AS LEVELS
+      FROM HR.DEPTS
+     WHERE PARENT_ID IS NULL
+     UNION ALL   
+    SELECT B.DEPARTMENT_ID AS 부서코드,
+           LPAD(' ',4*(2-1))||B.DEPARTMENT_NAME AS DEPARTMENT_NAME,
+           B.PARENT_ID AS PARENT_ID, 2 AS LEVELS
+      FROM HR.DEPTS A, HR.DEPTS B --SELF JOIN
+     WHERE A.PARENT_ID IS NULL
+       AND B.PARENT_ID=A.DEPARTMENT_ID;
