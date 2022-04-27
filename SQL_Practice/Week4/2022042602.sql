@@ -80,7 +80,8 @@
   (결합)
     SELECT DEPARTMENT_ID AS 부서코드,
            DEPARTMENT_NAME AS 부서명,
-           0 AS PARENT_ID, 1 AS LEVELS
+           NVL(PARENT_ID,0) AS PARENT_ID,
+           1 AS LEVELS
       FROM HR.DEPTS
      WHERE PARENT_ID IS NULL
      UNION ALL   
@@ -88,5 +89,8 @@
            LPAD(' ',4*(2-1))||B.DEPARTMENT_NAME AS DEPARTMENT_NAME,
            B.PARENT_ID AS PARENT_ID, 2 AS LEVELS
       FROM HR.DEPTS A, HR.DEPTS B --SELF JOIN
-     WHERE A.PARENT_ID IS NULL
-       AND B.PARENT_ID=A.DEPARTMENT_ID;
+     WHERE A.PARENT_ID IS NULL --A테이블을 상위부서코드가 NULL인 부서코드만 갖도록 하는 조건
+       AND B.PARENT_ID=A.DEPARTMENT_ID; --A테이블이 갖고있는 부서코드가 B테이블의 상위부터코드가 같은 부서 출력 조건
+       
+       
+       
