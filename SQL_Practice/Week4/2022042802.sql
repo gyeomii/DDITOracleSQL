@@ -21,11 +21,13 @@ SUBQUERY와 DML명령
         SELECT '2020', PROD_ID
         FROM PROD;
         
-2.UPDATE 문에서 서브쿼리 사용
+2.UPDATE 문에서 서브쿼리 사용(1)
  (사용형식)
     UPDATE 테이블명 [별칭]
        SET (컬럼명[,컬럼명,...])=(서브쿼리)
     [WHERE 조건];--변경할 데이터를 선택하는 조건
+    . SET절과 서브쿼리 SELECT절에 사용된 컬럼의 갯수, 순서, 타입이 일치해야한다.
+    . 테이블에 만들어진 모든 기본키를 WHERE절에서 비교를 해줘야 한다.
     
  (사용예)재고수불테이블(REMAIN)에 기초재고를 설정하시오.
         기초재고는 상품테이블이 적정재고량으로 하며 날짜는 2020년 1월 1일로 설정
@@ -38,5 +40,7 @@ SUBQUERY와 DML명령
              WHERE A.PROD_ID = B.PROD_ID)--추가할 데이터를 불러오기위힌 조건
      WHERE A.REMAIN_YEAR='2020';--변경할 데이터를 선택하는 조건
      
-     COMMIT;
+     COMMIT;        
+             
+             
              
