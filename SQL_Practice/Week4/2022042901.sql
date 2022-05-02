@@ -42,7 +42,7 @@
                      WHERE BUY_DATE BETWEEN TO_DATE('20200201') AND TO_DATE('20200430')
                      GROUP BY BUY_PROD) B
              WHERE A.PROD_ID = B.BID) --REMAIN에 추가할 데이터를 찾는 조건
-     WHERE A.REMAIN_YEAR='2020' --WHERE절이 없으면 REMAIN의 모든 데이터를 다 변경해버린다.
+     WHERE A.REMAIN_YEAR='2020' --WHERE절이 없으면 REMAIN의 모든 데이터를 변경해버린다.
        AND A.PROD_ID IN(SELECT DISTINCT BUY_PROD
                           FROM BUYPROD
                          WHERE BUY_DATE BETWEEN TO_DATE('20200201') AND TO_DATE('20200430'));
