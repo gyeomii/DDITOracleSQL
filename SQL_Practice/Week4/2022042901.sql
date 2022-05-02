@@ -78,7 +78,6 @@ BEGIN
     V_QTY:=(:NEW.BUY_QTY);
     V_PROD:=(:NEW.BUY_PROD);
     
-    
     UPDATE REMAIN A
        SET A.REMAIN_I = A.REMAIN_I + V_QTY,
            A.REMAIN_J_99 = A.REMAIN_J_99 + V_QTY,
