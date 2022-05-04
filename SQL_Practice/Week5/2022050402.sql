@@ -29,16 +29,22 @@
       CURSOR CUR_EMP01 IS 
         SELECT EMPLOYEE_ID, EMP_NAME, HIRE_DATE
           FROM HR.EMPLOYEES
-         WHERE JOB_ID = 'SA_REP';
+         WHERE JOB_ID = 'SA_MAN';
     BEGIN
-      
+      OPEN CUR_EMP01;
+    LOOP
+      FETCH CUR_EMP01 INTO V_EID, V_ENAME, V_HDATE;
+      EXIT WHEN CUR_EMP01%NOTFOUND;
+      DBMS_OUTPUT.PUT_LINE('사원번호 : '||V_EID);
+      DBMS_OUTPUT.PUT_LINE('사원명 : '||V_ENAME);
+      DBMS_OUTPUT.PUT_LINE('입사일 : '||V_HDATE);
+      DBMS_OUTPUT.PUT_LINE('-------------------------');
+    END LOOP;
+    CLOSE CUR_EMP01;
     END;
         
-        
-        
-        
-        
-        
-        
-  2)
-    
+ 2)WHILE 문
+  . 조건을 판단하여 반복을 진행할지 여부를 판단하는 반복문
+  (사용형식)
+    WHILE 조건 LOOP
+      반복
