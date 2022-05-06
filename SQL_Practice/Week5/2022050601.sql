@@ -85,7 +85,7 @@ SET SERVEROUTPUT ON;
       END LOOP;
     END;
 ---------------------------------------------------------------
-
+/
         SELECT A.MEM_ID, A.MEM_NAME, SUM(B.PROD_SALE*C.CART_QTY) AS CSUM
           FROM MEMBER A
     INNER JOIN CART C ON(A.MEM_ID = C.CART_MEMBER)
@@ -93,11 +93,11 @@ SET SERVEROUTPUT ON;
          WHERE C.CART_NO LIKE '2020%'
          GROUP BY A.MEM_ID, A.MEM_NAME
          ORDER BY 1;
-
+/
 --CURSOR문제
 2020년도 회원별 판매금액의 합계를 CURSOR와 FOR문을 통해 출력해보자.
 ALIAS는 MEM_ID, MEM_NAME, SUM_AMT
-
+/
     DECLARE 
       CURSOR CUR IS --매개변수 사용
         SELECT A.MEM_ID, A.MEM_NAME, SUM(B.PROD_SALE*C.CART_QTY) AS CSUM
@@ -117,7 +117,8 @@ ALIAS는 MEM_ID, MEM_NAME, SUM_AMT
       END IF;
       END LOOP;
     END;
-
+/
+/
     BEGIN --REC : 자동선언되는 묵시적 변수
       FOR REC IN (SELECT A.MEM_ID, A.MEM_NAME, SUM(B.PROD_SALE*C.CART_QTY) AS CSUM
                     FROM MEMBER A
@@ -132,3 +133,4 @@ ALIAS는 MEM_ID, MEM_NAME, SUM_AMT
                              ', 구매액: '||REC.CSUM); --출력
       END LOOP;
     END;
+/
