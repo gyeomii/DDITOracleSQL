@@ -107,9 +107,7 @@ VAR P_CART_QTY NUMBER
 EXEC USP_PRO_INFO('P101000001', '202001', :P_BUY_QTY, :P_CART_QTY)
 PRINT P_BUY_QTY
 PRINT P_CART_QTY;       
-        
-        
-        
-        
-        
-        
+    
+    
+    
+    
