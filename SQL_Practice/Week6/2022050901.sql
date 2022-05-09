@@ -85,3 +85,31 @@ PRINT P_MEM_AMT;
 
  (사용예)상품코드와 월을 입력하면 해당 월에 대한 해당 상품의 입고, 출고를 처리해 화면에 출력해보자
         프로시저 명 : USP_PRO_INFO, 월형식 : YYYYMM, 입고 및 출고는 OUT매개변수로 처리
+/
+    CREATE OR REPLACE PROCEDURE USP_PRO_INFO
+    (P_DATE IN VARCHAR2, P_PROD_ID IN VARCHAR2, P_BUY_QTY OUT NUMBER, P_CART_QTY OUT NUMBER)
+    IS
+    BEGIN
+        SELECT T.BSUM, T.CSUM INTO P_BUY_QTY, P_CART_QTY
+          FROM
+               (SELECT NVL(SUM(B.BUY_QTY),0) AS BSUM , NVL(SUM(C.CART_QTY),0) AS CSUM
+                  FROM PROD P
+            INNER JOIN BUYPROD B ON(P.PROD_ID = B.BUY_PROD) AND TO_CHAR(B.BUY_DATE, 'YYYYMM') LIKE P_DATE
+            LEFT OUTER JOIN CART C ON(B.BUY_PROD = C.CART_PROD) AND C.CART_NO LIKE P_DATE||'%'
+                 WHERE P.PROD_ID = P_PROD_ID
+                 GROUP BY P.PROD_ID
+                 ORDER BY 1) T;
+    END;  
+/        
+
+VAR P_BUY_QTY NUMBER
+VAR P_CART_QTY NUMBER
+EXEC USP_PRO_INFO('202004', 'P101000001', :P_BUY_QTY, :P_CART_QTY)
+PRINT P_BUY_QTY
+PRINT P_CART_QTY;       
+        
+        
+        
+        
+        
+        
