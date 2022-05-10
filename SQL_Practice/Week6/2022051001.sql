@@ -44,8 +44,7 @@ SELECT PROD_ID, PROD_NAME,
  (사용예)상품코드, 상품명, 대분류코드, 대분류명을 출력하자
         함수를 생성하여 대분류명을 처리해보자, 함수명: FN_PRODNM
 /        
-    CREATE OR REPLACE FUNCTION FN_PRODNM
-    (P_PROD_LGU IN VARCHAR2)
+    CREATE OR REPLACE FUNCTION FN_PRODNM(P_PROD_LGU IN VARCHAR2)
     RETURN VARCHAR2
     IS
         V_NM VARCHAR2(30);
