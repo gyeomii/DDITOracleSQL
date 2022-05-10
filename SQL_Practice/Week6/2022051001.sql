@@ -1,0 +1,19 @@
+2022-0510-01)
+FUNCTION
+ (사용예)회원아이디를 받으면 해당 이름을 리턴하는 함수 만들기
+ SET SERVEROUTPUT ON
+ /
+    CREATE OR REPLACE FUNCTION FN_GETNAME
+    (P_MEM_ID IN VARCHAR2)
+        RETURN VARCHAR2
+    IS
+        V_NAME VARCHAR2(30);
+    BEGIN
+        SELECT MEM_NAME INTO V_NAME
+          FROM MEMBER
+         WHERE MEM_ID = P_MEM_ID;
+         
+         RETURN V_NAME;
+    END;
+/
+SELECT FN_GETNAME('b001') FROM DUAL;
