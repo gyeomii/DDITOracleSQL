@@ -107,4 +107,23 @@ SET SERVEROUTPUT ON;
     SELECT *
       FROM USER_CONSTRAINTS
      WHERE CONSTRAINT_NAME = 'FR_BUYER_LGU';
-     
+/
+---------------------사용자 정의 예외----------------------
+/
+    ACCEPT p_lgu PROMPT '등록하려는 분류코드 입력: '
+    DECLARE
+        exp_lprod_gu EXCEPTION;
+        v_lgu VARCHAR2(10) := UPPER('&p_lgu');
+    BEGIN
+        IF v_lgu IN('P101','P102','P201','P202') THEN
+            --임의로 EXCEPTION을 발생시킴
+            RAISE exp_lprod_gu;
+        END IF;
+        DBMS_OUTPUT.PUT_LINE(v_lgu||'는 등록 가능');
+        
+        EXCEPTION
+            WHEN exp_lprod_gu THEN
+                DBMS_OUTPUT.PUT_LINE(v_lgu||'는 이미 등록된 코드입니다.');
+    END;
+/
+
