@@ -69,7 +69,7 @@
    
    3) 사용자 정의 예외 : 프로그래머가 정한 조건에 만족하지 않을 경우 발생
                       선언을 해야 하고, 명시적으로 RAISE문을 사용하여 발생
----------------------예제----------------------
+---------------------정의된 예외----------------------
 SET SERVEROUTPUT ON;
 /
     DECLARE
@@ -89,3 +89,22 @@ SET SERVEROUTPUT ON;
                 DBMS_OUTPUT.PUT_LINE('기타 에러: '||SQLERRM);
     END;
 /
+---------------------정의되지 않은 예외----------------------
+/
+    DECLARE
+        --EXCEPTION 타입의 exp_reference변수
+        exp_reference EXCEPTION;
+        --EXCEPTION_INIT을 통해 예외이름과 오류번호를 컴파일러에게 등록
+        PRAGMA EXCEPTION_INIT(exp_reference, -2292);
+    BEGIN
+        DELETE FROM LPROD WHERE LPROD_GU = 'P101';
+        DBMS_OUTPUT.PUT_LINE('분류 삭제');
+        EXCEPTION
+            WHEN exp_reference THEN
+            DBMS_OUTPUT.PUT_LINE('삭제 불가');
+    END;
+/
+    SELECT *
+      FROM USER_CONSTRAINTS
+     WHERE CONSTRAINT_NAME = 'FR_BUYER_LGU';
+     
