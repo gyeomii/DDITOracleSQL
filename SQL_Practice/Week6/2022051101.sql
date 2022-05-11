@@ -57,9 +57,9 @@
       선언할 필요가 없고 서버에서 암시적으로 발생함
     . NO_DATA_FOUND: 결과 없음
     . TOO_MANY_ROWS: 여러행 반환
-    . DUP_VAL_NO_INDEX: 데이터 중복오류(P.K./U.K.)
+    . DUP_VAL_ON_INDEX: 데이터 중복오류(P.K./U.K.)
     . VALUE_ERROR: 값 할당 및 변환시 오류
-    . INVALIED_NUMBER : 숫자로 변환이 안됨 
+    . INVALID_NUMBER : 숫자로 변환이 안됨 
     . NOT_LOGGED_ON : DB에 접속이 안되었는데 실행
     . LOGIN_DENIED : 잘못된 사용자 / 잘못된 비밀번호
     . ZERO_DIVIED : 0으로 나눔
@@ -124,6 +124,21 @@ SET SERVEROUTPUT ON;
         EXCEPTION
             WHEN exp_lprod_gu THEN
                 DBMS_OUTPUT.PUT_LINE(v_lgu||'는 이미 등록된 코드입니다.');
+    END;
+/
+   ACCEPT p_lgu PROMPT '등록하려는 분류코드 입력: '
+    DECLARE
+        exp_lprod_gu EXCEPTION;
+    BEGIN
+        IF UPPER('&p_lgu') IN('P101','P102','P201','P202') THEN
+            --임의로 EXCEPTION을 발생시킴
+            RAISE exp_lprod_gu;
+        END IF;
+        DBMS_OUTPUT.PUT_LINE(UPPER('&p_lgu')||'는 등록 가능');
+        
+        EXCEPTION
+            WHEN exp_lprod_gu THEN
+                DBMS_OUTPUT.PUT_LINE(UPPER('&p_lgu')||'는 이미 등록된 코드입니다.');
     END;
 /
 
