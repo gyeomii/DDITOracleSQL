@@ -16,7 +16,7 @@
  . ON 다음에 기술된 '테이블명' 은 트리거 본문에서 사용될 수 없다.(사용되면 사이클이 발생)
  . 'FOR EACH ROW' : 행단위 트리거인 경우 기술. 생략되면 문장단위 트리거
  . 'WHEN 조건' : 트리거가 실행되면서 지켜야 할 조건(조건에 맞는 데이터만 트리거 실행)
- 
+ . 트리거에는 COMMIT, LOLLBACK 과 같은 DCL명령을 쓸 수 없음 
  (사용예)다음 조건에 맞는 사원테이블(EMPT)을 HR계정의 사원테이블로부터 구조와 데이터를 가져와 생성하시오
         컬럼: 사원번호(EID), 사원명(ENAME), 급여(SAL), 부서코드(DEPTID),영업실적(COM_PCT)
         조건: 급여가 6000이하인 사원
@@ -46,7 +46,27 @@ SET SERVEROUTPUT ON;
     INSERT INTO EMPT      
       SELECT MAX(EID)+1, '강감찬', 5800, 50, NULL FROM EMPT;
 /
- (사용예)퇴직자테이블(EM_RETIRE)
+ (사용예)사원테이블에서 115,126, 132번 사원을 퇴직처리하시오
+        퇴직하는 사원정보는 사원테이블(EMPT)에서 삭제하시오.
+        삭제전에 퇴직하는 사원정보를 퇴직자테이블(EM_RETIRE)에 저장하시오.
+--트리거 생성
 /
-
+    CREATE OR REPLACE TRIGGER TG_REMOVE_EMP
+      BEFORE DELETE ON EMPT
+      FOR EACH ROW
+    DECLARE
+      V_EID EMPT.EID%TYPE;
+      V_DID EMPT.DEPTID%TYPE;
+    BEGIN
+      V_EID := (:OLD.EID);
+      V_DID := (:OLD.DEPTID);
+      INSERT INTO EM_RETIRE
+        VALUES(V_EID, V_DID, SYSDATE);
+      DBMS_OUTPUT.PUT_LINE('퇴직자 자료가 EM_RETIRE테이블로 옮겨졌습니다.');
+    END;
+/
+--퇴직자 자료 삭제
+/
+    DELETE FROM EMPT
+     WHERE EID IN (115, 126, 132);
 /
