@@ -68,7 +68,7 @@ commit;
 **재고갱신을 위한 트리거
  - 입고 발생시 자동으로 재고조정
 CREATE OR REPLACE TRIGGER TG_INPUT
-    AFTER INSERT ON BUYPROD
+    AFTER INSERT ON BUYPROD -- 타이밍 이벤트 ON 테이블명
     FOR EACH ROW
 DECLARE
     V_QTY  NUMBER:=0; --변수선언, 초기화
