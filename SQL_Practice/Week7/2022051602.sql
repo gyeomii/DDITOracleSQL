@@ -67,60 +67,64 @@ PACKAGE
 /
  (패키지 실행부)
 /
-    CREATE OR REPLACE PACKAGE PKG_EMP IS
-      FUNCTION fn_get_empname(
-        P_EID  IN HR.EMPLOYEES.EMPLOYEE_ID%TYPE)
-        RETURN HR.EMPLOYEES.EMP_NAME%TYPE
-      IS
-        V_ENAME HR.EMPLOYEES.EMP_NAME%TYPE;
-      BEGIN
-        SELECT EMP_NAME INTO V_ENAME
-          FROM HR.EMPLOYEES
-         WHERE EMPLOYEE_ID = P_EID;
+ CREATE OR REPLACE PACKAGE BODY PKG_EMP  IS
+    FUNCTION fn_get_empname(
+      P_EID IN HR.EMPLOYEES.EMPLOYEE_ID%TYPE)
+      RETURN HR.EMPLOYEES.EMP_NAME%TYPE
+    IS
+      V_ENAME HR.EMPLOYEES.EMP_NAME%TYPE;
+    BEGIN 
+      SELECT EMP_NAME INTO V_ENAME
+        FROM HR.EMPLOYEES
+       WHERE EMPLOYEE_ID=P_EID;
+       
+      RETURN NVL(V_ENAME,'해당 사원정보 없음'); 
+    END fn_get_empname;
+      
+    PROCEDURE proc_insert_new_emp(
+      P_HDATE IN VARCHAR2,
+      P_JID IN HR.JOBS.JOB_ID%TYPE,
+      P_ENAME IN HR.EMPLOYEES.EMP_NAME%TYPE,
+      P_SAL HR.EMPLOYEES.SALARY%TYPE)
+    IS
+      V_EID  HR.EMPLOYEES.EMPLOYEE_ID%TYPE;
+    BEGIN
+      SELECT MAX(EMPLOYEE_ID)+1 INTO V_EID
+        FROM HR.EMPLOYEES;
+        
+      INSERT INTO HR.EMPLOYEES(EMPLOYEE_ID,HIRE_DATE,JOB_ID,EMP_NAME,
+                               SALARY)
+        VALUES(V_EID,TO_DATE(P_HDATE),P_JID,P_ENAME,P_SAL);
+      
+      COMMIT;  
+    END proc_insert_new_emp;
+      
+    PROCEDURE proc_retire(
+      P_EID IN HR.EMPLOYEES.EMPLOYEE_ID%TYPE,
+      P_RDATE IN VARCHAR2)
+    IS
+      V_CNT NUMBER:=0;
+      E_NO_DATE EXCEPTION;
+    BEGIN
+      UPDATE HR.EMPLOYEES
+         SET RETIRE_DATE=TO_DATE(P_RDATE)
+       WHERE EMPLOYEE_ID=P_EID
+         AND RETIRE_DATE IS NULL;
          
-        RETURN NVL(V_ENAME, '해당 사원정보 없음');
-      END fn_get_empname;
+      V_CNT:=SQL%ROWCOUNT;
       
-      PROCEDURE proc_insert_new_emp(
-         P_HDATE IN VARCHAR2,
-         P_JID IN HR.JOBS.JOB_ID%TYPE,
-         P_ENAME IN HR.EMPLOYEES.EMP_NAME%TYPE,
-         P_SAL IN HR.EMPLOYEES.SALARY%TYPE)
-      IS
-        V_EID HR.EMPLOYEE_ID%TYPE;
-      BEGIN
-        SELECT MAX(EMPLOYEE_ID)+1 INTO V_EID
-          FROM HR.EMPLOYEES;
-        INSERT INTO HR.EMPLOYEES(EMPLOYEE_ID, HIRE_DATE, JOB_ID, EMP_NAME, SALARY)
-          VALUES(V_EID, TO_DATE(P_HDATE), P_JID, P_ENAME, P_SAL);
-        
-        COMMIT;      
-      END proc_insert_new_emp;
-      
-      PROCEDURE proc_retire(
-        P_EID IN HR.EMPLOYEES.EMPLOYEE_ID%TYPE,
-        P_RDATE IN DATE)
-      IS
-        V_CNT NUMBER:=0;
-        E_NO_DATE EXCEPTION;      
-      BEGIN
-        UPDATE HR.EMPLOYEES
-           SET RETIRE_DATE = TO_DATE(P_RDATE)
-         WHERE EMPLOYEE_ID = P_EID
-           AND RETIRE_DATE IS NULL;
-           
-        V_CNT:=SQL%ROWCOUNT;
-        
-        IF V_CNT=0 THEN
-          RAISE E_NO_DATE;
-        END IF;
-        COMMIT;
-        EXCEPTION WHEN E_NO_DATE THEN
-            DBMS_OUTPUT.PUT_LINE(P_EID||'번 사원 없음')
-            DBMS_OUPPUT.PUT_LINE(SQLERRM);
-            ROLLBACK;
-      END proc_retire;
-    END PKG_EMP;
+      IF V_CNT=0 THEN
+         RAISE E_NO_DATE;
+      END IF;     
+      COMMIT;
+      EXCEPTION WHEN E_NO_DATE THEN
+           DBMS_OUTPUT.PUT_LINE(P_EID||'번 사원정보 없음');
+           ROLLBACK;
+        WHEN OTHERS THEN  
+           DBMS_OUTPUT.PUT_LINE(SQLERRM);
+           ROLLBACK;     
+    END proc_retire;
+  END PKG_EMP;  
 /
  (실행-사원명 검색)
     SELECT EMPLOYEE_ID,
@@ -129,4 +133,14 @@ PACKAGE
       FROM HR.EMPLOYEES;
  
  (실행-신규사원저장)
+    EXECUTE pkg_emp.proc_insert_new_emp('20201220','SA_MAN','신길동',13000);
+
+ (실행-퇴직자처리) 키보드로 사원번호 입력
+    ACCEPT P_EID PROMPT '퇴직사원의 사원번호 입력: '
+    DECLARE
+      V_EID HR.EMPLOYEES.EMPLOYEE_ID%TYPE:=TO_NUMBER('&P_EID');
+      V_RDATE VARCHAR2(8):='20210710';
+    BEGIN
+      pkg_emp.proc_retire(V_EID, V_RDATE); --익명블록에서 함수를 실행할때 EXEC없이 해야함
+    END;
  
